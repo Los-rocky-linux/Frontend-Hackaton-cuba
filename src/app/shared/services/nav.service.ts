@@ -113,7 +113,7 @@ export class NavService implements OnDestroy {
     {
       title: 'example',
       path:'/ejemplo',
-      icon: 'search',
+      icon: 'learning',
       type: 'link',
       badgeType: 'light-secondary',
       active: false, 
@@ -146,11 +146,19 @@ export class NavService implements OnDestroy {
     {
       title: 'Development Type',
       path:'/development-type',
-      icon: 'search',
+      icon: 'board',
       type: 'link',
       badgeType: 'light-secondary',
       active: false, 
     },
+    // {
+    //   title: 'about us',
+    //   path:'/about',
+    //   icon: 'gallery',
+    //   type: 'link',
+    //   badgeType: 'light-secondary',
+    //   active: false, 
+    // },
   ];
 
   // Array

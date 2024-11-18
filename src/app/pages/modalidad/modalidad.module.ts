@@ -5,12 +5,14 @@ import { TableModalidadComponent } from './components/tables/table-modalidad/tab
 import { SharedModule } from '../../shared/shared.module';
 import { ModalidadRoutingModule } from './modalidad-routing.module';
 import { FormModalidadComponent } from './components/forms/form-modalidad/form-modalidad.component';
+import { ViewEnrollmentComponent } from './components/forms/view-enrollment/view-enrollment.component';
 
 @NgModule({
   declarations: [
     PageModalidadComponent, 
     TableModalidadComponent, 
-    FormModalidadComponent,
+    FormModalidadComponent, 
+    ViewEnrollmentComponent,
 ],
   imports: [
     CommonModule,

@@ -8,6 +8,7 @@ import {
 import { BootstrapModalConfig } from '../../../../../core/interfaces/IBootstrapModal.interface';
 import { BootstrapModalService } from '../../../../../core/services/boostrap-modal.service';
 import { FormModalidadComponent } from '../../forms/form-modalidad/form-modalidad.component';
+import { ViewEnrollmentComponent } from '../../forms/view-enrollment/view-enrollment.component';
 
 @Component({
   selector: 'app-table-modalidad',
@@ -97,6 +98,17 @@ export class TableModalidadComponent implements OnInit, OnDestroy {
         isEdit: true,
       },
     };
+    this._bsModalService.openModal(modalConfig);
+  }
+
+  openViewEnrollmentModal(enrollment: Enrollment): void {
+    const modalConfig: BootstrapModalConfig = {
+      title: 'Ver Información de la Inscripción',
+      options: { size: 'lg', centered: true },
+      component: ViewEnrollmentComponent,
+      data: { enrollment: enrollment },
+    };
+
     this._bsModalService.openModal(modalConfig);
   }
 

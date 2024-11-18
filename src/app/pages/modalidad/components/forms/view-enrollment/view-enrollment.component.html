@@ -1,0 +1,55 @@
+<div class="container mt-4">
+    <h3 class="text-center mb-4">Información de la Inscripción</h3>
+    <table class="table table-bordered">
+      <tbody>
+        <tr>
+          <th>ID de Inscripción</th>
+          <td>{{ enrollment?._id }}</td>
+        </tr>
+        <tr>
+          <th>Creado por</th>
+          <td>{{ enrollment?.createdBy?.name }} {{ enrollment?.createdBy?.lastName }}</td>
+        </tr>
+        <tr>
+          <th>Email del Creador</th>
+          <td>{{ enrollment?.createdBy?.email }}</td>
+        </tr>
+        <tr>
+          <th>Modalidad</th>
+          <td>{{ enrollment?.modality?.name }}</td>
+        </tr>
+        <tr>
+          <th>Título del Tema</th>
+          <td>{{ enrollment?.topicTitle || 'No disponible' }}</td>
+        </tr>
+        <tr>
+          <th>Descripción del Problema</th>
+          <td>{{ enrollment?.problemDescription || 'No disponible' }}</td>
+        </tr>
+        <tr>
+          <th>Tipo de Desarrollo</th>
+          <td>{{ enrollment?.developmentMechanism?.name }}</td>
+        </tr>
+        <tr *ngIf="enrollment?.partner">
+          <th>Compañero</th>
+          <td>{{ enrollment?.partner?.name }} {{ enrollment?.partner?.lastName }}</td>
+        </tr>
+        <tr>
+          <th>Tutores Preferidos</th>
+          <td>{{ formatTutors(enrollment?.preferredTutors || []) }}</td>
+        </tr>
+        <tr>
+          <th>Fecha de Creación</th>
+          <td>{{ enrollment?.createdAt | date: 'longDate' }}</td>
+        </tr>
+        <tr>
+          <th>Última Actualización</th>
+          <td>{{ enrollment?.updatedAt | date: 'longDate' }}</td>
+        </tr>
+      </tbody>
+    </table>
+    <div class="text-center mt-3">
+      <button class="btn btn-secondary" (click)="closeModal()">Cerrar</button>
+    </div>
+  </div>
+  

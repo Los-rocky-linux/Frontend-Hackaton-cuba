@@ -12,14 +12,6 @@
           >
             <i class="fas fa-sync-alt"></i>
           </button>
-          <!-- <button
-            class="btn btn-sm btn-head me-3"
-            [disabled]="isLoading"
-            ngbTooltip="Crear una inscripción"
-            (click)="openCreateEnrollmentFormModal()"
-          >
-            <i class="fa-solid fa-circle-plus"></i> Nueva Inscripción
-          </button> -->
         </div>
       </div>
 
@@ -40,15 +32,26 @@
             <tbody *ngIf="!isLoading && groups.length > 0">
               <tr *ngFor="let item of groups; trackBy: trackByGroupId">
                 <td>
-                  <button
-                    class="btn btn-sm btn-light mt-2"
-                    style="padding: 0.375rem 0.9rem"
-                    ngbTooltip="Ver Detalles"
-                    tooltipClass="custom-tooltip"
-                    (click)="openViewGroupModal(item)"
-                  >
-                    <i class="fa-solid fa-magnifying-glass"></i>
-                  </button>
+                  <div class="btn-group">
+                    <button
+                      class="btn btn-sm btn-light mt-2"
+                      style="padding: 0.375rem 0.5rem"
+                      ngbTooltip="Ver Información"
+                      tooltipClass="custom-tooltip"
+                      (click)="openViewGroupModal(item)"
+                    >
+                      <i class="fa-solid fa-magnifying-glass"></i>
+                    </button>
+                    <!-- <button
+                      class="btn btn-sm btn-light mt-2"
+                      style="padding: 0.375rem 0.5rem"
+                      ngbTooltip="Editar"
+                      tooltipClass="custom-tooltip"
+                      (click)="openEditGroupModal(item)"
+                    >
+                      <i class="fa-solid fa-pen-to-square"></i>
+                    </button> -->
+                  </div>
                 </td>
                 <td>{{ item.membersNames }}</td>
                 <td>{{ item.modalityName }}</td>

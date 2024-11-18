@@ -76,12 +76,12 @@ export class TableGroupComponent implements OnInit, OnDestroy {
     return members.map((member) => `${member.name} ${member.lastName}`).join(', ') || 'N/A';
   }
 
-  openViewGroupModal(group: GroupDisplay): void { // Asegúrate de que el tipo sea GroupDisplay
+  openViewGroupModal(group: GroupDisplay): void {
     const modalConfig: BootstrapModalConfig = {
       title: 'Detalles del Grupo',
       options: { size: 'xl', centered: true },
       component: ViewGroupComponent,
-      data: group, // Pasa el grupo directamente
+      data: group,
     };
     this._bsModalService.openModal(modalConfig);
   }
