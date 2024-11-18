@@ -7,3 +7,9 @@ svg-icon {
      fill: orange;
    }
  }
+ .logo-image {
+  width: 122px; // Ancho deseado
+  height: 25px; // Alto deseado
+  object-fit: contain; // Ajustar la imagen manteniendo la relación de aspecto
+}
+
