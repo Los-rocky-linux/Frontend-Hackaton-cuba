@@ -1,0 +1,39 @@
+.basic_table .card {
+    border: 1px solid #dcdcdc;
+    border-radius: 8px;
+    overflow: hidden;
+  }
+  
+  .basic_table .table {
+    margin-bottom: 0;
+  }
+  
+  .table-striped tbody tr:nth-of-type(odd) {
+    background-color: #f9f9f9;
+  }
+  
+  .table-primary {
+    background-color: #007bff;
+    color: white;
+  }
+  
+  .uppercase-table th, .uppercase-table td {
+    text-transform: uppercase;
+    font-size: 0.9rem;
+    padding: 8px;
+  }
+  
+  .btn-group .btn {
+    margin: 0 2px;
+    padding: 4px 8px;
+  }
+  
+  .custom-tooltip .tooltip-inner {
+    font-size: 0.8rem;
+  }
+  
+  .custom-datatable {
+    max-height: 500px;
+    overflow-y: auto;
+  }
+  

@@ -1,0 +1,48 @@
+<div class="table table-responsive" style="max-height: 507px">
+    <table class="table">
+      <thead>
+        <tr>
+          @for (column of tableColumns; track $index) {
+          <th scope="col">{{ column.name | titlecase }}</th>
+          }
+        </tr>
+      </thead>
+  
+      <tbody>
+        @if (isLoading) {
+        <tr>
+          <td [colSpan]="tableColumns.length">
+            <div class="loader-box">
+              <div class="loader-16"></div>
+            </div>
+          </td>
+        </tr>
+        } @else {
+        <div class="d-none"></div>
+        @for (e of tableData ; track $index) {
+        <tr>
+          @for (column of tableColumns; track $index) {
+          <td class="ellipsis-text" style="max-width: 200px">
+            <ngb-highlight
+              ngbTooltip="{{ column.name }}"
+              [result]="e[column.dataKey] ? e[column.dataKey].toString() : null"
+              [highlightClass]="
+                column.highlightClass ? column.highlightClass : ''
+              "
+              [term]="column.highlightedKey ? column.highlightedKey : ''"
+            ></ngb-highlight>
+          </td>
+          }
+        </tr>
+        }@empty {
+        <tr>
+          <td [colSpan]="tableColumns.length">No hay datos para mostrar.</td>
+        </tr>
+        }
+        <div class="d-none"></div>
+        }
+      </tbody>
+    </table>
+  </div>
+  <!-- ngbTooltip="{{e[column.dataKey] ? e[column.dataKey].toString() : ''}}" -->
+  

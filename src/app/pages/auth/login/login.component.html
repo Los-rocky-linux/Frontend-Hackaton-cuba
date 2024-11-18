@@ -1,0 +1,99 @@
+<div class="container-fluid">
+  <div class="row">
+    <div
+      class="col-xl-7 order-1 login-background"
+    >
+      <img
+        class="bg-img-cover bg-center d-none"
+        src="assets/images/login/1.jpg"
+        alt="looginpage"
+      />
+    </div>
+    <div class="col-xl-5 p-0">
+      <div class="login-card login-dark">
+        <div>
+          <div class="login-main">
+            <form
+              class="theme-form needs-validation"
+              [class.was-validated]="!loginForm.valid"
+              novalidate=""
+              [formGroup]="loginForm" (ngSubmit)="onSubmit()"
+            >
+              <h4>Ingres su cuenta</h4>
+              <p>Introduzca su correo y su contraseña para iniciar sesión</p>
+              <div class="form-group">
+                <label class="col-form-label">Correo</label>
+                <input
+                  class="form-control"
+                  type="email"
+                  required=""
+                  placeholder="e1234567890@live.uleam.edu.ec"
+                  formControlName="email"
+                />
+                <div
+                  class="invalid-feedback"
+                  *ngIf="
+                    loginForm.controls.email.touched &&
+                    loginForm.controls.email.errors?.['required']
+                  "
+                >
+                  El correo es requerido
+                </div>
+                <div
+                  class="invalid-feedback"
+                  *ngIf="
+                    loginForm.controls.email.touched &&
+                    loginForm.controls.email.errors?.email
+                  "
+                >
+                  Correo inválido.
+                </div>
+              </div>
+              <div class="form-group">
+                <label class="col-form-label">Contraseña</label>
+                <input
+                  class="form-control"
+                  [type]="show ? 'text' : 'password'"
+                  name="login[password]"
+                  required=""
+                  placeholder="*********"
+                  formControlName="password"
+                />
+                <div
+                  class="invalid-feedback"
+                  *ngIf="loginForm.controls.password.touched && loginForm.controls.password.errors?.required"
+
+                >
+
+                La contraseña es requerida.
+                </div>
+                <div class="show-hide" (click)="showPassword()" *ngIf="!show">
+                  <span class="show"></span>
+                </div>
+                <div class="show-hide" (click)="showPassword()" *ngIf="show">
+                  <span class="Hide"></span>
+                </div>
+              </div>
+              <div class="form-group mb-0">
+                <div class="checkbox p-0">
+                  <input id="checkbox1" type="checkbox" />
+                  <label  for="checkbox1"
+                    >Recordar contraseña</label
+                  >
+                </div>
+                
+                <button
+                  class="btn btn-primary d-block w-100"
+                  type="submit"
+                  [disabled]="!loginForm.valid"
+                >
+                  Iniciar sesión
+                </button>
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

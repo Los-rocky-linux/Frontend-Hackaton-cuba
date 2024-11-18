@@ -1,0 +1,103 @@
+<div class="container-fluid basic_table">
+  <div class="row">
+    <div class="card">
+      <div class="card-header">
+        <div class="text-end">
+          
+          <button
+            class="btn btn-sm btn-head me-3"
+            ngbTooltip="Descargar Información en .xls"
+            tooltipClass="custom-tooltip"
+            [disabled]="isLoading"
+            (click)="exportToExcel()"
+          >
+            <i class="far fa-file-excel"></i>
+          </button>
+          <button
+            class="btn btn-sm btn-head btn-head-table me-3"
+            [disabled]="isLoading"
+            (click)="openCreatePermissionModal()"
+          >
+            <i class="fa-solid fa-circle-plus"></i> Crear Permiso
+          </button>
+        </div>
+      </div>
+      <div class="card-body custom-datatable noscroll">
+        <div class="table-responsive signal-table custom-datatable">
+          <table class="table table-hover table-responsive uppercase-table">
+            <thead>
+              <tr>
+                <th>Acciones</th>
+                <th>ID</th>
+                <th>Usuario</th>
+                <th>Tipo de Permiso</th>
+                <th>Estado</th>
+                <th>Fecha Inicial</th>
+                <th>Fecha Final</th>
+                <th>Usuario Aprobador</th>
+                <th>Fecha de Creación</th>
+                <th>Fecha de Actualización</th>
+                <th>Observaciones</th>
+              </tr>
+            </thead>
+            <tbody>
+              @for (item of itemList; track $index) {
+              <tr>
+                <div class="btn-group">
+                    <button
+                      class="btn btn-sm btn-light mt-2"
+                      style="padding: 0.375rem 0.9rem"
+                      ngbTooltip="Ver Información del Permiso"
+                      tooltipClass="custom-tooltip"
+                      (click)="viewDetails(item)"
+                    >
+                      <i class="fa-solid fa-magnifying-glass"></i>
+                    </button>
+                    <button
+                      class="btn btn-sm btn-danger mt-2"
+                      style="padding: 0.375rem 0.9rem"
+                      ngbTooltip="Eliminar Permiso"
+                      tooltipClass="custom-tooltip"
+                      (click)="deleteItem(item)"
+                    >
+                      <i class="fa-solid fa-ban"></i>
+                    </button>
+                    <button
+                      class="btn btn-sm btn-success mt-2"
+                      style="padding: 0.375rem 0.9rem"
+                      ngbTooltip="Editar Permiso"
+                      tooltipClass="custom-tooltip"
+                      (click)="editItem(item)"
+                    >
+                      <i class="fa-solid fa-pen-to-square"></i>
+                    </button>
+                  </div>
+                <td>{{ item.idPermission }}</td>
+                <td>{{ item.userId }}</td>
+                <td>{{ item.permissionType }}</td>
+                <td>{{ item.state }}</td>
+                <td>{{ item.initialDate | date : "shortDate" }}</td>
+                <td>{{ item.finalDate | date : "shortDate" }}</td>
+                <td>{{ item.approverUserId }}</td>
+                <td>{{ item.created | date : "shortDate" }}</td>
+                <td>{{ item.updated | date : "shortDate" }}</td>
+                <td ellipsisOverflow>{{ item.observations }}</td>
+                <td>
+                  
+                </td>
+              </tr>
+              }
+            </tbody>
+          </table>
+        </div>
+      </div>
+      <div class="card-footer">
+        <shared-custom-pagination
+          [collectionSize]="collectionSize"
+          (pageChange)="onPageChange($event)"
+          (pageSizeChange)="onLimitChange($event)"
+        ></shared-custom-pagination>
+      </div>
+    </div>
+  </div>
+</div>

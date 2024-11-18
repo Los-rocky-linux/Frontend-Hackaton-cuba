@@ -1,0 +1,614 @@
+/*! -----------------------------------------------------------------------------------
+
+    Template Name: Cuba Admin
+    Template URI: http://admin.pixelstrap.com/cuba/theme
+    Description: This is Admin theme
+    Author: Pixelstrap
+    Author URI: https://themeforest.net/user/pixelstrap
+
+-----------------------------------------------------------------------------------
+ */
+// *** utils ***
+@import "../scss/utils/variables";
+
+:root {
+  --theme-deafult: #7366ff;
+  --theme-secondary: #f73164;
+  --light-background: rgba(242, 243, 247, 0.7);
+  --body-font-color: #2f2f3b;
+  --chart-border: #ecf3fa;
+  --recent-chart-bg: #fcfcfd;
+  --light-bg: #f6f7f9;
+  --white: #fff;
+  --light2: #f5f6f9;
+  --sidebar-border: rgba(0, 0, 0, 0.1);
+  --chart-text-color: rgba(82, 82, 108, 0.8);
+  --recent-dashed-border: rgba(82, 82, 108, 0.3);
+  --chart-dashed-border: rgba(82, 82, 108, 0.2);
+  --chart-progress-light: rgba(82, 82, 108, 0.1);
+  --recent-box-bg: #f2f4f7;
+  --recent-border: rgba(97, 101, 122, 0.25);
+  --course-light-btn: #f2f3f7;
+  --course-bg: #f7f7f7;
+  --balance-profie-bg: #e0dfef;
+  --view-grid-bg: #ecf3fa80;
+  --view-border-marker: #cfcdfc;
+
+  --fc-button-bg-color: var(--theme-deafult);
+  --fc-button-active-bg-color: var(--theme-deafult);
+  --fc-button-active-border-color: var(--theme-deafult);
+  --fc-button-border-color: var(--theme-deafult);
+  --fc-button-hover-bg-color: var(--theme-deafult);
+  --fc-button-hover-border-color: var(--theme-deafult);
+  --backgroundcolor: #fff;
+
+  //CUSTOM STYLES
+
+  // BUTTONS
+  --primary-button-color: #54ba4a;
+  --primary-button-text-color: #fff;
+  --secondary-button-color: #5a6268;
+  --refresh-button-color: #f0c429;
+  --cancel-button-color: #ff0000;
+  --btn-light-green-bg: #b2fab4;
+  --btn-light-green-border: #b2fab4;
+  --btn-light-green-color: #fff;
+  --btn-light-green-disabled-bg: #d4f6d8;
+  --btn-light-green-disabled-border: #d4f6d8;
+
+  //TEXT
+  --primary-text-color: #000001;
+  --secondary-text-color: #bcc0c6;
+  --general-color: #fff;
+
+  //SWITCHES
+  --switch-color: #54ba4a;
+
+  //ALERT
+  --alert-icon-color: #f0c429;
+  --alert-box-bg-color: #f7ddad;
+
+  //OTHERS
+  --exit-color: #000000;
+  --option-list-shadow: #bcc0c6;
+
+  //REPRESENTATIVES COLORS
+  --sorti-representative-icon-color: #426d0f40;
+  --client-representative-icon-color: #c2a8666b;
+
+  //INFORMATIVE
+  --informative-icon-color: #8c98a1;
+  --informative-text-color: #8c98a1;
+
+  //TABLE
+  --table-icon-color: #8c98a178;
+
+  //ACTION
+  --action-icon-color: #426d0f;
+  --inactive-section-color: #78828a;
+  --active-section-color: #54ba4a;
+  --action-info-label-color: #425940;
+
+  //TRANSACTIONS
+  --transaction-entry-label-color: #40d933;
+  --transaction-exit-label-color: #ff0000;
+
+  //LABEL
+  --user-label-color: #78828a;
+
+  //DISABLES
+  --disabled: #596b43;
+  --disabled-button-text-color: #a0a0a0;
+
+  // STATES
+  --state-pending-color: #f9c100;
+  --state-bot-request-color: #c0d32a;
+  --state-pre-validated-color: #54ba4a;
+  --state-rejected-color: #ff0000;
+  --state-bot-request-pending-slip-color: #c0d32a;
+  --state-processed-color: #40d933;
+  --state-bot-problem-color: #ff0000;
+  --state-processed-validate-color: #40d933;
+  --state-correction-color: #bab04a;
+  --state-charge-not-entry-color: #4aba90;
+  --state-reversal-color: #db6027;
+  --state-divide-color: #db6027;
+  --state-reject-comment-color: #ff0000;
+  --state-bot-request-reversal-color: #c0d32a;
+  --state-new-color: #4a54b4;
+  --color-pending: #ffc107;
+  --color-processing: #007bff;
+  --color-bonus: #28a745;
+  --color-debt: #dc3545;
+  --color-comision: #6f42c1;
+  --color-charge-double: #343a40;
+  --color-auspicious: #ffc107;
+}
+
+body.dark-only {
+  --light-background: rgba(31, 32, 40, 0.65);
+  --recent-chart-bg: #262932;
+  --light-bg: #1d1e26;
+  --white: #262932;
+  --sidebar-border: rgba(255, 255, 255, 0.1);
+  --light2: #1d1e26;
+  --chart-border: #374558;
+  --recent-box-bg: #1d1e26;
+  --recent-border: #374558;
+  --body-font-color: rgba(255, 255, 255, 0.6);
+  --course-light-btn: var(--light-bg);
+  --view-grid-bg: var(--light-bg);
+  --view-border-marker: #2c2c45d4;
+  --bs-tertiary-bg: #1d1e26;
+  --bs-border-color: #374558;
+  --bs-modal-footer-border-color: #374558;
+  --bs-secondary-bg: #1d1e26;
+  --backgroundcolor: #262932;
+  /* Modo oscuro */
+  --primary-button-color: #2d6a69;
+  --primary-text-color: #ffffff;
+  --secondary-text-color: #a0a0a0;
+  --informative-text-color: #3a774a;
+  --exit-color: #ffffff;
+  --option-list-shadow: #3a3a3a;
+  --alert-box-bg-color: #5e3d3d;
+  --switch-color: #2d6a69;
+  --secondary-button-color: #2d6a69;
+  --refresh-button-color: #a1751d;
+  --sort-representative-icon-color: #2b4710;
+  --client-representative-icon-color: #932e5c;
+  --informative-icon-color: #5b6c7a;
+  --user-label-color: #4c4c4c;
+  --action-icon-color: #2b4710;
+  --inactive-section-color: #4c4c4c;
+  --active-section-color: #2d6a69;
+  --action-info-label-color: #2a3c2b;
+  --alert-icon-color: #a1751d;
+  --transaction-entry-label-color: #2a6c1f;
+  --transaction-exit-label-color: #d20000;
+
+  /* Estados */
+  --state-pending-color: #b08400;
+  --state-bot-request-color: #a1b719;
+  --state-pre-validated-color: #2d6a69;
+  --state-rejected-color: #d20000;
+  --state-bot-request-pending-slip-color: #a1b719;
+  --state-processed-color: #1f4721;
+  --state-bot-problem-color: #d20000;
+  --state-correction-color: #7b7a26;
+  --state-alert-color: #a83a1a;
+  --state-entry-color: #2a6c1f;
+  --state-reversal-color: #a83a1a;
+  --state-comment-processed-color: #d20000;
+  --state-comment-reversal-color: #a1b719;
+  --state-new-color: #313b89;
+}
+
+body[class="rtl dark-only"] {
+  --light-background: rgba(31, 32, 40, 0.65);
+  --recent-chart-bg: #262932;
+  --light-bg: #1d1e26;
+  --white: #262932;
+  --sidebar-border: rgba(255, 255, 255, 0.1);
+  --light2: #1d1e26;
+  --chart-border: #374558;
+  --recent-box-bg: #1d1e26;
+  --recent-border: #374558;
+  --body-font-color: rgba(255, 255, 255, 0.6);
+  --course-light-btn: var(--light-bg);
+  --view-grid-bg: var(--light-bg);
+  --view-border-marker: #2c2c45d4;
+  --bs-tertiary-bg: #1d1e26;
+  --bs-border-color: #374558;
+  --bs-modal-footer-border-color: #374558;
+  --bs-secondary-bg: #1d1e26;
+  /* Modo oscuro */
+  --primary-button-color: #2d6a69;
+  --primary-text-color: #ffffff;
+  --secondary-text-color: #a0a0a0;
+  --informative-text-color: #3a774a;
+  --exit-color: #ffffff;
+  --option-list-shadow: #3a3a3a;
+  --alert-box-bg-color: #5e3d3d;
+  --switch-color: #2d6a69;
+  --secondary-button-color: #2d6a69;
+  --refresh-button-color: #a1751d;
+  --sort-representative-icon-color: #2b4710;
+  --client-representative-icon-color: #932e5c;
+  --informative-icon-color: #5b6c7a;
+  --user-label-color: #4c4c4c;
+  --action-icon-color: #2b4710;
+  --inactive-section-color: #4c4c4c;
+  --active-section-color: #2d6a69;
+  --action-info-label-color: #2a3c2b;
+  --alert-icon-color: #a1751d;
+  --transaction-entry-label-color: #2a6c1f;
+  --transaction-exit-label-color: #d20000;
+
+  /* Estados */
+  --state-pending-color: #b08400;
+  --state-bot-request-color: #a1b719;
+  --state-pre-validated-color: #2d6a69;
+  --state-rejected-color: #d20000;
+  --state-bot-request-pending-slip-color: #a1b719;
+  --state-processed-color: #1f4721;
+  --state-bot-problem-color: #d20000;
+  --state-correction-color: #7b7a26;
+  --state-alert-color: #a83a1a;
+  --state-entry-color: #2a6c1f;
+  --state-reversal-color: #a83a1a;
+  --state-comment-processed-color: #d20000;
+  --state-comment-reversal-color: #a1b719;
+  --state-new-color: #313b89;
+}
+
+body.dark-only.box-layout {
+  --light-background: rgba(31, 32, 40, 0.65);
+  --recent-chart-bg: #262932;
+  --light-bg: #1d1e26;
+  --white: #262932;
+  --sidebar-border: rgba(255, 255, 255, 0.1);
+  --light2: #1d1e26;
+  --chart-border: #374558;
+  --recent-box-bg: #1d1e26;
+  --recent-border: #374558;
+  --body-font-color: rgba(255, 255, 255, 0.6);
+  --course-light-btn: var(--light-bg);
+  --view-grid-bg: var(--light-bg);
+  --view-border-marker: #2c2c45d4;
+  --bs-tertiary-bg: #1d1e26;
+  --bs-border-color: #374558;
+  --bs-modal-footer-border-color: #374558;
+  --bs-secondary-bg: #1d1e26;
+  /* Modo oscuro */
+  --primary-button-color: #2d6a69;
+  --primary-text-color: #ffffff;
+  --secondary-text-color: #a0a0a0;
+  --informative-text-color: #3a774a;
+  --exit-color: #ffffff;
+  --option-list-shadow: #3a3a3a;
+  --alert-box-bg-color: #5e3d3d;
+  --switch-color: #2d6a69;
+  --secondary-button-color: #2d6a69;
+  --refresh-button-color: #a1751d;
+  --sort-representative-icon-color: #2b4710;
+  --client-representative-icon-color: #932e5c;
+  --informative-icon-color: #5b6c7a;
+  --user-label-color: #4c4c4c;
+  --action-icon-color: #2b4710;
+  --inactive-section-color: #4c4c4c;
+  --active-section-color: #2d6a69;
+  --action-info-label-color: #2a3c2b;
+  --alert-icon-color: #a1751d;
+  --transaction-entry-label-color: #2a6c1f;
+  --transaction-exit-label-color: #d20000;
+
+  /* Estados */
+  --state-pending-color: #b08400;
+  --state-bot-request-color: #a1b719;
+  --state-pre-validated-color: #2d6a69;
+  --state-rejected-color: #d20000;
+  --state-bot-request-pending-slip-color: #a1b719;
+  --state-processed-color: #1f4721;
+  --state-bot-problem-color: #d20000;
+  --state-correction-color: #7b7a26;
+  --state-alert-color: #a83a1a;
+  --state-entry-color: #2a6c1f;
+  --state-reversal-color: #a83a1a;
+  --state-comment-processed-color: #d20000;
+  --state-comment-reversal-color: #a1b719;
+  --state-new-color: #313b89;
+}
+/* ---------------------
+	*** Icons Scss ***
+-----------------------*/
+@import "vendors/whether-icon";
+@import "vendors/flag-icon";
+@import "vendors/icofont";
+@import "vendors/themify";
+
+/* ---------------------
+	*** Base ***
+-----------------------*/
+
+@import "base/reset";
+@import "base/typography";
+
+//  *** components ***
+@import "../scss/pages/custom.scss";
+@import "components/according.scss";
+@import "components/alert.scss";
+@import "components/avatars.scss";
+@import "components/badge.scss";
+@import "components/bookmark.scss";
+@import "components/breadcrumb.scss";
+@import "components/builders.scss";
+
+@import "components/buttons.scss";
+
+@import "components/card.scss";
+@import "components/color.scss";
+@import "components/datatable.scss";
+@import "components/datepicker.scss";
+@import "components/dropdown.scss";
+@import "components/form-builder.scss";
+@import "components/form-input.scss";
+@import "components/form-wizard";
+@import "components/forms.scss";
+@import "components/form_builder-2.scss";
+@import "components/icons.scss";
+@import "components/list.scss";
+@import "components/loader.scss";
+@import "components/popover.scss";
+@import "components/print.scss";
+@import "components/radio.scss";
+@import "components/ribbon.scss";
+@import "components/switch.scss";
+@import "components/tab.scss";
+@import "components/table.scss";
+@import "components/touchspin.scss";
+@import "components/tour.scss";
+@import "components/tree.scss";
+@import "components/typeahead-search.scss";
+@import "components/scrollbar";
+
+//	*** pages ***
+
+@import "pages/blog.scss";
+@import "pages/bookmark-app.scss";
+@import "pages/cart.scss";
+@import "pages/chart.scss";
+@import "pages/chat.scss";
+@import "pages/checkout.scss";
+@import "pages/comingsoon.scss";
+@import "pages/contacts.scss";
+@import "pages/dashboard_2.scss";
+@import "pages/dashboard_3.scss";
+@import "pages/dashboard_4.scss";
+@import "pages/dashboard_5.scss";
+@import "pages/dashboard_default.scss";
+@import "pages/ecommerce.scss";
+@import "pages/email-application.scss";
+@import "pages/errorpage.scss";
+@import "pages/faq.scss";
+@import "pages/file.scss";
+@import "pages/gallery.scss";
+@import "pages/internationalization.scss";
+@import "pages/job-search.scss";
+@import "pages/jsgrid.scss";
+@import "pages/kanban.scss";
+@import "pages/knowledgebase.scss";
+@import "pages/language.scss";
+@import "pages/learning.scss";
+@import "pages/login.scss";
+@import "pages/megaoption.scss";
+@import "pages/order-history.scss";
+@import "pages/page.scss";
+@import "pages/pricing.scss";
+@import "pages/progress.scss";
+@import "pages/projectlist.scss";
+@import "pages/social-app.scss";
+@import "pages/task.scss";
+@import "pages/timeline-v.scss";
+@import "pages/timeliny.scss";
+@import "pages/user-profile.scss";
+@import "pages/wishlist.scss";
+
+/* ---------------------
+	*** themes ***
+-----------------------*/
+@import "themes/dark.scss";
+@import "themes/theme-customizer.scss";
+@import "themes/update.scss";
+// *** layout ***
+
+@import "layout/footer.scss";
+@import "layout/grid.scss";
+@import "layout/header.scss";
+@import "layout/navs.scss";
+@import "layout/search.scss";
+@import "layout/select2.scss";
+@import "layout/sidebar.scss";
+@import "layout/rtl.scss";
+@import "layout/box-layout.scss";
+
+.content-left {
+  border-radius: 1%;
+  padding: 15px;
+}
+
+.content-left {
+  padding: 15px;
+}
+
+.content-right {
+  border-radius: 1%;
+  padding: 15px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.custom-input {
+  height: 36px;
+}
+
+.btn-delete {
+  margin-top: 5.3%;
+}
+
+.alert {
+  padding: 3px;
+}
+
+.text-area {
+  width: 104%;
+}
+
+.btn-upload {
+  padding-right: 0.75rem;
+  padding-left: 0.75rem;
+}
+
+.drop-area-container {
+  position: relative;
+  width: 100%;
+  flex-grow: 1;
+  border: 2px dashed #ccc;
+  border-radius: 10px;
+  overflow: hidden;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  height: 668px;
+}
+
+.cloud-image {
+  position: absolute;
+  top: 42px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 330px;
+  height: auto;
+}
+
+.uploadico {
+  position: absolute;
+  top: 254px;
+  left: 50%;
+  transform: translateX(-50%);
+  font-size: 60px;
+}
+
+.custom-tooltip .tooltip-inner {
+  background-color: var(--alert-box-bg-color);
+  color: #000;
+}
+
+.balance-nav {
+  .balance-info {
+    display: flex;
+    align-items: center;
+    padding: 0 15px;
+    font-size: 16px;
+    font-weight: 600;
+  }
+}
+
+// BUTTONS
+.primary-button {
+  background-color: var(--primary-button-color);
+  border: none;
+  color: var(--primary-button-text-color);
+  padding: 0.375rem 1.75rem;
+  font-size: 12px;
+  text-align: center;
+  text-decoration: none;
+  vertical-align: middle;
+  border-radius: 0.375rem;
+}
+
+.primary-button-cancel {
+  background-color: var(--cancel-button-color);
+  border: none;
+  color: var(--primary-button-text-color);
+  padding: 0.375rem 1.75rem;
+  font-size: 12px;
+  text-align: center;
+  text-decoration: none;
+  vertical-align: middle;
+  border-radius: 0.375rem;
+}
+
+.primary-button-sm {
+  background-color: var(--primary-button-color);
+  border: none;
+  color: var(--primary-button-text-color);
+  padding: 0.375rem 0.75rem;
+  font-size: 12px;
+  text-align: center;
+  text-decoration: none;
+  vertical-align: middle;
+  border-radius: 0.375rem;
+}
+
+.primary-button-xs {
+  background-color: var(--primary-button-color);
+  border: none;
+  color: var(--primary-button-text-color);
+  padding: 4px;
+  font-size: 4px;
+  text-align: center;
+  text-decoration: none;
+  vertical-align: middle;
+  border-radius: 0.375rem;
+}
+
+.secondary-button {
+  background-color: var(--secondary-button-color);
+  border: none;
+  color: var(--primary-button-text-color);
+  padding: 0.375rem 1.75rem;
+  font-size: 12px;
+  text-align: center;
+  text-decoration: none;
+  vertical-align: middle;
+  border-radius: 0.375rem;
+}
+
+.secondary-button-sm {
+  background-color: var(--secondary-button-color);
+  border: none;
+  color: var(--primary-button-text-color);
+  padding: 0.375rem 0.75rem;
+  font-size: 12px;
+  text-align: center;
+  text-decoration: none;
+  vertical-align: middle;
+  border-radius: 0.375rem;
+}
+
+.secondary-button-xs {
+  background-color: var(--secondary-button-color);
+  border: none;
+  color: var(--primary-button-text-color);
+  padding: 4px;
+  font-size: 4px;
+  text-align: center;
+  text-decoration: none;
+  vertical-align: middle;
+  border-radius: 0.375rem;
+}
+
+button:disabled {
+  background-color: var(--disabled);
+  color: var(--disabled-button-text-color);
+  cursor: not-allowed;
+}
+
+.refresh-button {
+  background-color: var(--refresh-button-color);
+  border: none;
+  color: var(--primary-button-text-color);
+  padding: 0.375rem 0.75rem;
+  font-size: 12px;
+  text-align: center;
+  text-decoration: none;
+  vertical-align: middle;
+  border-radius: 0.375rem;
+}
+
+//TEXT
+.primary-text {
+  color: var(--primary-text-color);
+}
+
+.secondary-text {
+  color: var(--secondary-text-color);
+}
+
+.special-text {
+  color: var(--primary-button-color);
+}

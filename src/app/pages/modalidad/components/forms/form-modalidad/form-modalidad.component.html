@@ -1,0 +1,192 @@
+<div class="container-fluid">
+  <div class="row justify-content-center">
+    <div class="col-12">
+      <div class="card">
+        <form [formGroup]="enrollmentForm" (ngSubmit)="onSubmit()">
+          <div class="row mb-4">
+            <!-- Título del Tema -->
+            <div class="col-sm-6 mb-3">
+              <label for="topicTitle" class="col-form-label"
+                >Título del Tema</label
+              >
+              <input
+                id="topicTitle"
+                type="text"
+                formControlName="topicTitle"
+                class="form-control custom-input"
+                placeholder="Ingrese el título del tema"
+              />
+              <div
+                *ngIf="
+                  enrollmentForm.get('topicTitle')?.invalid &&
+                  enrollmentForm.get('topicTitle')?.touched
+                "
+                class="invalid-feedback"
+              >
+                El título del tema es requerido.
+              </div>
+            </div>
+
+            <!-- Modalidad -->
+            <div class="col-sm-6 mb-3">
+              <label for="modality" class="col-form-label">Modalidad</label>
+              <ng-select
+                id="modality"
+                formControlName="modality"
+                [items]="modalities"
+                bindLabel="name"
+                bindValue="_id"
+                placeholder="Seleccione la modalidad"
+                [searchable]="true"
+                [clearable]="true"
+                [loading]="isLoadingModalities"
+                notFoundText="No se encontraron modalidades"
+                class="custom-input"
+              ></ng-select>
+              <div
+                *ngIf="
+                  enrollmentForm.get('modality')?.invalid &&
+                  enrollmentForm.get('modality')?.touched
+                "
+                class="invalid-feedback"
+              >
+                La modalidad es requerida.
+              </div>
+            </div>
+
+            <!-- Descripción del Problema -->
+            <div class="col-12 mb-3">
+              <label for="problemDescription" class="col-form-label"
+                >Descripción del Problema</label
+              >
+              <textarea
+                id="problemDescription"
+                formControlName="problemDescription"
+                class="form-control custom-input"
+                placeholder="Describa el problema"
+                rows="3"
+              ></textarea>
+              <div
+                *ngIf="
+                  enrollmentForm.get('problemDescription')?.invalid &&
+                  enrollmentForm.get('problemDescription')?.touched
+                "
+                class="invalid-feedback"
+              >
+                La descripción del problema es requerida.
+              </div>
+            </div>
+
+            <!-- Tipo de Desarrollo -->
+            <div class="col-sm-6 mb-3">
+              <label for="developmentType" class="col-form-label"
+                >Tipo de Desarrollo</label
+              >
+              <ng-select
+                id="developmentType"
+                formControlName="developmentType"
+                [items]="developmentTypes"
+                bindLabel="name"
+                bindValue="_id"
+                placeholder="Seleccione el tipo de desarrollo"
+                [searchable]="true"
+                [clearable]="true"
+                (change)="onDevelopmentTypeChange($event)"
+                [loading]="isLoadingDevelopmentTypes"
+                notFoundText="No se encontraron tipos de desarrollo"
+                class="custom-input"
+              ></ng-select>
+              <div
+                *ngIf="
+                  enrollmentForm.get('developmentType')?.invalid &&
+                  enrollmentForm.get('developmentType')?.touched
+                "
+                class="invalid-feedback"
+              >
+                El tipo de desarrollo es requerido.
+              </div>
+            </div>
+
+            <!-- Selección de Compañero (solo si es Grupal) -->
+            <div class="col-sm-6 mb-3" *ngIf="showPartnerSelection">
+              <label for="partner" class="col-form-label"
+                >Seleccionar Compañero</label
+              >
+              <ng-select
+                id="partner"
+                formControlName="partner"
+                [items]="availableStudents"
+                bindLabel="fullName"
+                bindValue="_id"
+                placeholder="Seleccione un compañero"
+                [searchable]="true"
+                [clearable]="true"
+                [loading]="isLoadingStudents"
+                notFoundText="No se encontraron estudiantes"
+                class="custom-input"
+              ></ng-select>
+              <div
+                *ngIf="
+                  enrollmentForm.get('partner')?.invalid &&
+                  enrollmentForm.get('partner')?.touched
+                "
+                class="invalid-feedback"
+              >
+                Debe seleccionar un compañero.
+              </div>
+            </div>
+
+            <!-- Tutores Preferidos -->
+            <div class="col-sm-12 mb-3">
+              <label for="preferredTutors" class="col-form-label"
+                >Tutores Preferidos</label
+              >
+              <ng-select
+                id="preferredTutors"
+                formControlName="preferredTutors"
+                [items]="tutors"
+                bindLabel="name"
+                bindValue="_id"
+                placeholder="Seleccione hasta tres tutores"
+                [multiple]="true"
+                [maxSelectedItems]="3"
+                [closeOnSelect]="false"
+                [searchable]="true"
+                [clearable]="true"
+                [loading]="isLoadingTutors"
+                notFoundText="No se encontraron tutores"
+                class="custom-input"
+              ></ng-select>
+              <div
+                *ngIf="
+                  enrollmentForm.get('preferredTutors')?.invalid &&
+                  enrollmentForm.get('preferredTutors')?.touched
+                "
+                class="invalid-feedback"
+              >
+                Debe seleccionar al menos un tutor (máximo 3).
+              </div>
+            </div>
+          </div>
+
+          <div class="form-group text-center mt-3">
+            <button
+              type="button"
+              class="btn btn-secondary btn-spacing"
+              (click)="closeModal()"
+            >
+              Cerrar
+            </button>
+            <button
+              class="btn btn-success btn-spacing"
+              type="submit"
+              [disabled]="isLoading || enrollmentForm.invalid"
+            >
+              {{ isEdit ? "Actualizar Inscripción" : "Crear Inscripción" }}
+            </button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
