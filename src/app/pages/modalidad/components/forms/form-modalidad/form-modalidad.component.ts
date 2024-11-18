@@ -15,18 +15,13 @@ import { Subscription } from 'rxjs';
 export class FormModalidadComponent implements OnInit, OnDestroy {
   isEdit = false;
   enrollmentData: Enrollment | null = null;
-
   enrollmentForm: FormGroup;
   modalities: Array<{ _id: string; name: string }> = [];
   developmentTypes: Array<{ _id: string; name: string }> = [];
   tutors: Array<{ _id: string; name: string }> = [];
   availableStudents: Array<{ _id: string; fullName: string }> = [];
-  isLoading = false;
-  isLoadingModalities = false;
-  isLoadingDevelopmentTypes = false;
-  isLoadingTutors = false;
-  isLoadingStudents = false;
   showPartnerSelection = false;
+  isExpanded = false;
   private subscriptions: Subscription[] = [];
 
   constructor(
@@ -65,21 +60,12 @@ export class FormModalidadComponent implements OnInit, OnDestroy {
   }
 
   loadRelatedData(): void {
-    const userId = '67310a9457493987b0c28de2'; // Simulate logged-in user ID
-
-    this.isLoadingModalities = true;
-    this.isLoadingDevelopmentTypes = true;
-    this.isLoadingTutors = true;
-    this.isLoadingStudents = true;
+    const userId = '67310a9457493987b0c28de2'; // Simulated logged-in user ID
 
     const modalitiesSub = this.enrollmentService.getModalities().subscribe(
       (modalities) => {
         this.modalities = modalities;
-        this.isLoadingModalities = false;
         this.checkIfEditMode();
-      },
-      () => {
-        this.isLoadingModalities = false;
       }
     );
     this.subscriptions.push(modalitiesSub);
@@ -87,11 +73,7 @@ export class FormModalidadComponent implements OnInit, OnDestroy {
     const developmentTypesSub = this.enrollmentService.getDevelopmentTypes().subscribe(
       (developmentTypes) => {
         this.developmentTypes = developmentTypes;
-        this.isLoadingDevelopmentTypes = false;
         this.checkIfEditMode();
-      },
-      () => {
-        this.isLoadingDevelopmentTypes = false;
       }
     );
     this.subscriptions.push(developmentTypesSub);
@@ -99,10 +81,6 @@ export class FormModalidadComponent implements OnInit, OnDestroy {
     const tutorsSub = this.enrollmentService.getTutors().subscribe(
       (tutors) => {
         this.tutors = tutors;
-        this.isLoadingTutors = false;
-      },
-      () => {
-        this.isLoadingTutors = false;
       }
     );
     this.subscriptions.push(tutorsSub);
@@ -115,10 +93,6 @@ export class FormModalidadComponent implements OnInit, OnDestroy {
             _id: student._id,
             fullName: `${student.name} ${student.lastName}`,
           }));
-        this.isLoadingStudents = false;
-      },
-      () => {
-        this.isLoadingStudents = false;
       }
     );
     this.subscriptions.push(studentsSub);
@@ -132,31 +106,37 @@ export class FormModalidadComponent implements OnInit, OnDestroy {
       this.developmentTypes.length > 0
     ) {
       console.log('Editing enrollment:', this.enrollmentData);
+  
+      // Set values in the form
       this.enrollmentForm.patchValue({
         topicTitle: this.enrollmentData.topicTitle,
         problemDescription: this.enrollmentData.problemDescription,
         modality: this.enrollmentData.modality?._id || null,
         developmentType: this.enrollmentData.developmentMechanism?._id || null,
         partner: this.enrollmentData.partner?._id || null,
-        preferredTutors:
-          this.enrollmentData.preferredTutors?.map((tutor) => tutor._id) || [],
+        preferredTutors: this.enrollmentData.preferredTutors?.map((tutor) => tutor._id) || [],
       });
-
-      const developmentTypeId =
-        this.enrollmentData.developmentMechanism?._id || null;
+  
+      // Disable fields that should not be editable
+      this.enrollmentForm.get('modality')?.disable();
+      this.enrollmentForm.get('developmentType')?.disable();
+      this.enrollmentForm.get('partner')?.disable();
+  
+      const developmentTypeId = this.enrollmentData.developmentMechanism?._id || null;
       const selectedDevelopmentType = this.developmentTypes.find(
         (type) => type._id === developmentTypeId
       );
-
+  
       console.log(
         'Selected development type in checkIfEditMode:',
         selectedDevelopmentType
       );
-
+  
+      // Update partner selection visibility if applicable
       this.onDevelopmentTypeChange(selectedDevelopmentType);
     }
   }
-
+  
   onDevelopmentTypeChange(event: any): void {
     console.log('onDevelopmentTypeChange event:', event);
     const developmentType = event;
@@ -179,13 +159,18 @@ export class FormModalidadComponent implements OnInit, OnDestroy {
     partnerControl?.updateValueAndValidity();
   }
 
+  adjustTextareaHeight(event: Event): void {
+    const textarea = event.target as HTMLTextAreaElement;
+    textarea.style.height = 'auto';
+    textarea.style.height = `${textarea.scrollHeight}px`;
+  }
+
   onSubmit(): void {
     if (this.enrollmentForm.invalid) {
       this.toastr.error('Por favor, complete todos los campos obligatorios');
       return;
     }
-    this.isLoading = true;
-    const userId = '67310a9457493987b0c28de2'; // Simulate logged-in user ID
+    const userId = '67310a9457493987b0c28de2'; // Simulated logged-in user ID
 
     const enrollmentData = {
       userId,
@@ -216,14 +201,12 @@ export class FormModalidadComponent implements OnInit, OnDestroy {
 
   private onSuccess(action: string): void {
     this.toastr.success(`Inscripción ${action} con éxito`);
-    this.isLoading = false;
     this.bootstrapModalService.updateModalClosed(true);
     this.activeModal.close(true);
   }
 
   private onError(action: string): void {
     this.toastr.error(`Error al ${action} la inscripción`);
-    this.isLoading = false;
   }
 
   closeModal(): void {

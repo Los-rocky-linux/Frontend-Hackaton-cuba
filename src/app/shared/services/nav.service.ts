@@ -124,7 +124,7 @@ export class NavService implements OnDestroy {
     {
       title: 'Modality',
       path:'/modality',
-      icon: 'search',
+      icon: 'email',
       type: 'link',
       badgeType: 'light-secondary',
       active: false, 

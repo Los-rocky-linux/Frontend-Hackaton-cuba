@@ -6,9 +6,7 @@
           <div class="row mb-4">
             <!-- Título del Tema -->
             <div class="col-sm-6 mb-3">
-              <label for="topicTitle" class="col-form-label"
-                >Título del Tema</label
-              >
+              <label for="topicTitle" class="col-form-label">Título del Tema</label>
               <input
                 id="topicTitle"
                 type="text"
@@ -39,33 +37,36 @@
                 placeholder="Seleccione la modalidad"
                 [searchable]="true"
                 [clearable]="true"
-                [loading]="isLoadingModalities"
                 notFoundText="No se encontraron modalidades"
                 class="custom-input"
               ></ng-select>
               <div
-                *ngIf="
-                  enrollmentForm.get('modality')?.invalid &&
-                  enrollmentForm.get('modality')?.touched
-                "
-                class="invalid-feedback"
+                *ngIf="isEdit && enrollmentForm.get('modality')?.disabled"
+                class="text-danger ng-star-inserted"
               >
-                La modalidad es requerida.
+                No se puede editar la modalidad.
               </div>
             </div>
 
             <!-- Descripción del Problema -->
             <div class="col-12 mb-3">
-              <label for="problemDescription" class="col-form-label"
-                >Descripción del Problema</label
-              >
+              <label for="problemDescription" class="col-form-label">Descripción del Problema</label>
               <textarea
                 id="problemDescription"
                 formControlName="problemDescription"
                 class="form-control custom-input"
                 placeholder="Describa el problema"
                 rows="3"
+                [style.maxHeight]="isExpanded ? 'none' : '100px'"
+                (input)="adjustTextareaHeight($event)"
               ></textarea>
+              <button
+                type="button"
+                class="btn btn-link"
+                (click)="isExpanded = !isExpanded"
+              >
+                {{ isExpanded ? 'Mostrar menos' : 'Mostrar más' }}
+              </button>
               <div
                 *ngIf="
                   enrollmentForm.get('problemDescription')?.invalid &&
@@ -79,9 +80,7 @@
 
             <!-- Tipo de Desarrollo -->
             <div class="col-sm-6 mb-3">
-              <label for="developmentType" class="col-form-label"
-                >Tipo de Desarrollo</label
-              >
+              <label for="developmentType" class="col-form-label">Tipo de Desarrollo</label>
               <ng-select
                 id="developmentType"
                 formControlName="developmentType"
@@ -92,26 +91,20 @@
                 [searchable]="true"
                 [clearable]="true"
                 (change)="onDevelopmentTypeChange($event)"
-                [loading]="isLoadingDevelopmentTypes"
                 notFoundText="No se encontraron tipos de desarrollo"
                 class="custom-input"
               ></ng-select>
               <div
-                *ngIf="
-                  enrollmentForm.get('developmentType')?.invalid &&
-                  enrollmentForm.get('developmentType')?.touched
-                "
-                class="invalid-feedback"
+                *ngIf="isEdit && enrollmentForm.get('developmentType')?.disabled"
+                class="text-danger ng-star-inserted"
               >
-                El tipo de desarrollo es requerido.
+                No se puede editar el tipo de desarrollo.
               </div>
             </div>
 
             <!-- Selección de Compañero (solo si es Grupal) -->
             <div class="col-sm-6 mb-3" *ngIf="showPartnerSelection">
-              <label for="partner" class="col-form-label"
-                >Seleccionar Compañero</label
-              >
+              <label for="partner" class="col-form-label">Seleccionar Compañero</label>
               <ng-select
                 id="partner"
                 formControlName="partner"
@@ -121,26 +114,20 @@
                 placeholder="Seleccione un compañero"
                 [searchable]="true"
                 [clearable]="true"
-                [loading]="isLoadingStudents"
                 notFoundText="No se encontraron estudiantes"
                 class="custom-input"
               ></ng-select>
               <div
-                *ngIf="
-                  enrollmentForm.get('partner')?.invalid &&
-                  enrollmentForm.get('partner')?.touched
-                "
-                class="invalid-feedback"
+                *ngIf="isEdit && enrollmentForm.get('partner')?.disabled"
+                class="text-danger ng-star-inserted"
               >
-                Debe seleccionar un compañero.
+                No se puede editar el compañero.
               </div>
             </div>
 
             <!-- Tutores Preferidos -->
             <div class="col-sm-12 mb-3">
-              <label for="preferredTutors" class="col-form-label"
-                >Tutores Preferidos</label
-              >
+              <label for="preferredTutors" class="col-form-label">Tutores Preferidos</label>
               <ng-select
                 id="preferredTutors"
                 formControlName="preferredTutors"
@@ -153,7 +140,6 @@
                 [closeOnSelect]="false"
                 [searchable]="true"
                 [clearable]="true"
-                [loading]="isLoadingTutors"
                 notFoundText="No se encontraron tutores"
                 class="custom-input"
               ></ng-select>
@@ -180,7 +166,7 @@
             <button
               class="btn btn-success btn-spacing"
               type="submit"
-              [disabled]="isLoading || enrollmentForm.invalid"
+              [disabled]="enrollmentForm.invalid"
             >
               {{ isEdit ? "Actualizar Inscripción" : "Crear Inscripción" }}
             </button>

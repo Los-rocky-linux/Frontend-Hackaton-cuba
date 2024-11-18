@@ -1,7 +1,10 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
 import { Subscription } from 'rxjs';
 import { EnrollmentService } from '../../../../../core/services/enrollment.service';
-import { Enrollment, EnrollmentDisplay } from '../../../../../core/interfaces/enrollment.interface';
+import {
+  Enrollment,
+  EnrollmentDisplay,
+} from '../../../../../core/interfaces/enrollment.interface';
 import { BootstrapModalConfig } from '../../../../../core/interfaces/IBootstrapModal.interface';
 import { BootstrapModalService } from '../../../../../core/services/boostrap-modal.service';
 import { FormModalidadComponent } from '../../forms/form-modalidad/form-modalidad.component';
@@ -35,11 +38,17 @@ export class TableModalidadComponent implements OnInit, OnDestroy {
       next: (response) => {
         this.enrollments = response.result.map((enrollment) => ({
           ...enrollment,
-          preferredTutorsNames: this.formatTutors(enrollment.preferredTutors || []),
+          preferredTutorsNames: this.formatTutors(
+            enrollment.preferredTutors || []
+          ),
           developmentTypeName: enrollment.developmentMechanism?.name || 'N/A',
           modalityName: enrollment.modality?.name || 'N/A',
-          createdByName: enrollment.createdBy ? `${enrollment.createdBy.name} ${enrollment.createdBy.lastName}` : 'N/A',
-          partnerName: enrollment.partner ? `${enrollment.partner.name} ${enrollment.partner.lastName}` : 'N/A',
+          createdByName: enrollment.createdBy
+            ? `${enrollment.createdBy.name} ${enrollment.createdBy.lastName}`
+            : 'N/A',
+          partnerName: enrollment.partner
+            ? `${enrollment.partner.name} ${enrollment.partner.lastName}`
+            : 'N/A',
         }));
         this.collectionSize = response.totalCount;
         this.isLoading = false;
@@ -51,11 +60,13 @@ export class TableModalidadComponent implements OnInit, OnDestroy {
   }
 
   listenToModalClose(): void {
-    const modalCloseSubscription = this._bsModalService.getModalClosed().subscribe((closed) => {
-      if (closed) {
-        this.reloadTable();
-      }
-    });
+    const modalCloseSubscription = this._bsModalService
+      .getModalClosed()
+      .subscribe((closed) => {
+        if (closed) {
+          this.reloadTable();
+        }
+      });
     this.subscriptions.push(modalCloseSubscription);
   }
 
@@ -77,7 +88,6 @@ export class TableModalidadComponent implements OnInit, OnDestroy {
   }
 
   openEditEnrollmentFormModal(enrollment: Enrollment): void {
-    console.log('Abrir modal de edición con datos de inscripción:', enrollment);
     const modalConfig: BootstrapModalConfig = {
       title: 'Editar Inscripción',
       options: { size: 'xl', centered: true },
@@ -89,7 +99,6 @@ export class TableModalidadComponent implements OnInit, OnDestroy {
     };
     this._bsModalService.openModal(modalConfig);
   }
-  
 
   reloadTable(): void {
     this.loadEnrollments();
