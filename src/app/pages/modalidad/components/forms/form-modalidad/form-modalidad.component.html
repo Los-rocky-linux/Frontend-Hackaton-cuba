@@ -6,7 +6,9 @@
           <div class="row mb-4">
             <!-- Título del Tema -->
             <div class="col-sm-6 mb-3">
-              <label for="topicTitle" class="col-form-label">Título del Tema</label>
+              <label for="topicTitle" class="col-form-label"
+                >Título del Tema</label
+              >
               <input
                 id="topicTitle"
                 type="text"
@@ -50,29 +52,22 @@
 
             <!-- Descripción del Problema -->
             <div class="col-12 mb-3">
-              <label for="problemDescription" class="col-form-label">Descripción del Problema</label>
+              <label for="problemDescription" class="col-form-label"
+                >Descripción del Problema</label
+              >
               <textarea
                 id="problemDescription"
                 formControlName="problemDescription"
-                class="form-control custom-input"
+                class="form-control "
                 placeholder="Describa el problema"
-                rows="3"
-                [style.maxHeight]="isExpanded ? 'none' : '100px'"
-                (input)="adjustTextareaHeight($event)"
+                rows="5"
               ></textarea>
-              <button
-                type="button"
-                class="btn btn-link"
-                (click)="isExpanded = !isExpanded"
-              >
-                {{ isExpanded ? 'Mostrar menos' : 'Mostrar más' }}
-              </button>
               <div
                 *ngIf="
                   enrollmentForm.get('problemDescription')?.invalid &&
                   enrollmentForm.get('problemDescription')?.touched
                 "
-                class="invalid-feedback"
+                class="invalid-feedback d-block"
               >
                 La descripción del problema es requerida.
               </div>
@@ -80,7 +75,9 @@
 
             <!-- Tipo de Desarrollo -->
             <div class="col-sm-6 mb-3">
-              <label for="developmentType" class="col-form-label">Tipo de Desarrollo</label>
+              <label for="developmentType" class="col-form-label"
+                >Tipo de Desarrollo</label
+              >
               <ng-select
                 id="developmentType"
                 formControlName="developmentType"
@@ -95,7 +92,9 @@
                 class="custom-input"
               ></ng-select>
               <div
-                *ngIf="isEdit && enrollmentForm.get('developmentType')?.disabled"
+                *ngIf="
+                  isEdit && enrollmentForm.get('developmentType')?.disabled
+                "
                 class="text-danger ng-star-inserted"
               >
                 No se puede editar el tipo de desarrollo.
@@ -104,7 +103,9 @@
 
             <!-- Selección de Compañero (solo si es Grupal) -->
             <div class="col-sm-6 mb-3" *ngIf="showPartnerSelection">
-              <label for="partner" class="col-form-label">Seleccionar Compañero</label>
+              <label for="partner" class="col-form-label"
+                >Seleccionar Compañero</label
+              >
               <ng-select
                 id="partner"
                 formControlName="partner"
@@ -127,7 +128,9 @@
 
             <!-- Tutores Preferidos -->
             <div class="col-sm-12 mb-3">
-              <label for="preferredTutors" class="col-form-label">Tutores Preferidos</label>
+              <label for="preferredTutors" class="col-form-label"
+                >Tutores Preferidos</label
+              >
               <ng-select
                 id="preferredTutors"
                 formControlName="preferredTutors"
