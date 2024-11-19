@@ -1,13 +1,12 @@
+// table-group.component.ts
 import { Component, OnInit, OnDestroy } from '@angular/core';
 import { Subscription } from 'rxjs';
 import { GroupService } from '../../../../../core/services/group.service';
-import {
-  Group,
-  GroupDisplay,
-} from '../../../../../core/interfaces/group.interface';
+import { GroupDisplay } from '../../../../../core/interfaces/group.interface';
 import { BootstrapModalConfig } from '../../../../../core/interfaces/IBootstrapModal.interface';
 import { BootstrapModalService } from '../../../../../core/services/boostrap-modal.service';
 import { ViewGroupComponent } from '../../forms/view-group/view-group/view-group.component';
+import { FilterCommunicationService } from '../../../../../core/services/filter-communication.service';
 
 @Component({
   selector: 'app-table-group',
@@ -22,24 +21,47 @@ export class TableGroupComponent implements OnInit, OnDestroy {
   public limit = 10;
   private subscriptions: Subscription[] = [];
 
+  private currentFilters: any = {};
+
   constructor(
     private groupService: GroupService,
-    private _bsModalService: BootstrapModalService
+    private _bsModalService: BootstrapModalService,
+    private filterCommunicationService: FilterCommunicationService
   ) {}
 
   ngOnInit(): void {
     this.loadGroups();
     this.listenToModalClose();
+    this.subscribeToFilterChanges();
+  }
+
+  subscribeToFilterChanges(): void {
+    const filterSub = this.filterCommunicationService.currentFilter.subscribe(
+      (filters) => {
+        console.log('Filtros recibidos en TableGroupComponent:', filters);
+        if (filters !== null) {
+          this.currentFilters = filters;
+          this.page = 1; // Resetear a la primera página
+          this.loadGroups();
+        } else {
+          // Si los filtros son null, significa que se reseteó el filtro
+          this.currentFilters = {};
+          this.page = 1;
+          this.loadGroups();
+        }
+      }
+    );
+    this.subscriptions.push(filterSub);
   }
 
   loadGroups(): void {
-    console.log('Loading groups data...');
+    console.log('Cargando grupos con filtros:', this.currentFilters);
     this.isLoading = true;
     const subscription = this.groupService
-      .getAllGroups(this.page, this.limit)
+      .getAllGroups(this.page, this.limit, this.currentFilters)
       .subscribe({
         next: (response) => {
-          console.log('Groups data loaded:', response.data.result);
+          console.log('Datos de grupos cargados:', response.data.result);
           this.groups = response.data.result.map((group) => ({
             ...group,
             membersNames: this.formatMembers(group.members || []),
@@ -48,12 +70,13 @@ export class TableGroupComponent implements OnInit, OnDestroy {
               group.enrollments[0]?.developmentMechanism?.name || 'N/A',
             modalityName: group.enrollments[0]?.modality?.name || 'N/A',
             topicTitle: group.enrollments[0]?.topicTitle || 'N/A',
+            createdAt: group.createdAt,
           }));
           this.collectionSize = response.data.totalCount;
           this.isLoading = false;
         },
         error: (error) => {
-          console.error('Error loading groups data:', error);
+          console.error('Error al cargar datos de grupos:', error);
           this.isLoading = false;
         },
       });
@@ -90,6 +113,7 @@ export class TableGroupComponent implements OnInit, OnDestroy {
   }
 
   openViewGroupModal(group: GroupDisplay): void {
+    console.log('Abriendo modal para el grupo:', group);
     const modalConfig: BootstrapModalConfig = {
       title: 'Detalles del Grupo',
       options: { size: 'xl', centered: true },
@@ -100,7 +124,6 @@ export class TableGroupComponent implements OnInit, OnDestroy {
   }
 
   reloadTable(): void {
-    console.log('Reloading table...');
     this.loadGroups();
   }
 
@@ -121,11 +144,13 @@ export class TableGroupComponent implements OnInit, OnDestroy {
 
   onPageChange(page: number): void {
     this.page = page;
+    console.log('Cambio de página:', this.page);
     this.loadGroups();
   }
 
   onLimitChange(limit: number): void {
     this.limit = limit;
+    console.log('Cambio de límite de registros por página:', this.limit);
     this.loadGroups();
   }
 

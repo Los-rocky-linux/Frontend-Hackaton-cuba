@@ -24,6 +24,7 @@ import { BootstrapModalComponent } from './components/modals/bootstrap-modal/boo
 import { NgSelectModule } from '@ng-select/ng-select';
 import { BasicTableComponent } from './components/table/basic-table/basic-table.component';
 import { EllipsisOverflowDirective } from './directives/ellipsis-overflow.directive';
+import { BsDatepickerModule } from 'ngx-bootstrap/datepicker';
 
 @NgModule({
   declarations: [
@@ -53,7 +54,8 @@ import { EllipsisOverflowDirective } from './directives/ellipsis-overflow.direct
     NgbModule,
     // DragulaModule.forRoot(),
     TranslateModule.forRoot(),
-    NgSelectModule
+    NgSelectModule,
+    BsDatepickerModule.forRoot(),
   ],
   exports: [
     NgbModule,
@@ -65,7 +67,7 @@ import { EllipsisOverflowDirective } from './directives/ellipsis-overflow.direct
     CustomPaginationComponent,
     NgSelectModule,
     BasicTableComponent,
-
+    BsDatepickerModule,
     //directivas aqui
     EllipsisOverflowDirective
   ],

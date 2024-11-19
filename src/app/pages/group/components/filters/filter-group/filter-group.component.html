@@ -1,0 +1,122 @@
+<!-- filter-group.component.html -->
+<div class="row">
+    <div class="col-sm-12 col-xl-12">
+      <div class="card" style="margin-bottom: 0px">
+        <div class="card-header d-flex justify-content-between align-items-center">
+          <h5 class="card-title">Filtro De Búsqueda</h5>
+          <button
+            class="btn btn-link"
+            type="button"
+            data-bs-toggle="collapse"
+            data-bs-target="#filterCardContent"
+            aria-expanded="false"
+            aria-controls="filterCardContent"
+            (click)="toggleExpand()"
+          >
+            <i
+              class="fa"
+              [ngClass]="{
+                'fa-chevron-up': isExpanded,
+                'fa-chevron-down': !isExpanded
+              }"
+            ></i>
+          </button>
+        </div>
+  
+        <div id="filterCardContent" class="collapse">
+          <div class="card-body">
+            <form [formGroup]="filterForm" (ngSubmit)="applyFilters()">
+              <div class="row mb-3">
+                <!-- Fecha -->
+                <div class="col-sm-4">
+                  <label class="col-form-label">Fecha de Creación</label>
+                  <input
+                    bsDaterangepicker
+                    type="text"
+                    class="form-control"
+                    formControlName="creationDate"
+                    placeholder="Seleccione una fecha"
+                  />
+                </div>
+  
+                <!-- Miembros -->
+                <div class="col-sm-4">
+                  <label class="col-form-label">Miembros</label>
+                  <ng-select
+                    [items]="members"
+                    bindLabel="fullName"
+                    bindValue="_id"
+                    placeholder="Seleccione miembros"
+                    formControlName="members"
+                  ></ng-select>
+                </div>
+  
+                <!-- Modalidad -->
+                <div class="col-sm-4">
+                  <label class="col-form-label">Modalidad</label>
+                  <ng-select
+                    [items]="modalities"
+                    bindLabel="name"
+                    bindValue="_id"
+                    placeholder="Seleccione una modalidad"
+                    formControlName="modality"
+                  ></ng-select>
+                </div>
+              </div>
+  
+              <div class="row mb-3">
+                <!-- Mecanismo de Desarrollo -->
+                <div class="col-sm-4">
+                  <label class="col-form-label">Mecanismo de Desarrollo</label>
+                  <ng-select
+                    [items]="developmentMechanisms"
+                    bindLabel="name"
+                    bindValue="_id"
+                    placeholder="Seleccione un mecanismo"
+                    formControlName="developmentMechanism"
+                  ></ng-select>
+                </div>
+  
+                <!-- Título del Tema -->
+                <div class="col-sm-4">
+                  <label class="col-form-label">Título del Tema</label>
+                  <input
+                    type="text"
+                    class="form-control"
+                    placeholder="Ingrese el título del tema"
+                    formControlName="topicTitle"
+                  />
+                </div>
+  
+                <!-- Tutores Elegidos -->
+                <div class="col-sm-4">
+                  <label class="col-form-label">Tutores Elegidos</label>
+                  <ng-select
+                    [items]="tutors"
+                    bindLabel="name"
+                    bindValue="_id"
+                    placeholder="Seleccione tutores"
+                    formControlName="preferredTutors"
+                  ></ng-select>
+                </div>
+              </div>
+            </form>
+  
+            <div class="text-end">
+              <button
+                type="button"
+                class="btn btn-sm btn-restore me-1"
+                (click)="resetFilters()"
+              >
+                Restablecer
+              </button>
+              <button type="button" class="btn btn-sm btn-head me-1" (click)="applyFilters()">
+                Filtrar
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  

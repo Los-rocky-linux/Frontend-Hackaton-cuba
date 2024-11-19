@@ -5,6 +5,10 @@ import { TableGroupComponent } from './components/tables/table-group/table-group
 import { GroupRoutingModule } from './group-routing.module';
 import { SharedModule } from "../../shared/shared.module";
 import { ViewGroupComponent } from './components/forms/view-group/view-group/view-group.component';
+import { FilterGroupComponent } from './components/filters/filter-group/filter-group.component';
+import { NgSelectModule } from '@ng-select/ng-select';
+import { BsDatepickerModule } from 'ngx-bootstrap/datepicker';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 
 
@@ -12,12 +16,17 @@ import { ViewGroupComponent } from './components/forms/view-group/view-group/vie
   declarations: [
     PageGroupComponent,
     TableGroupComponent,
-    ViewGroupComponent
+    ViewGroupComponent,
+    FilterGroupComponent
   ],
   imports: [
     CommonModule,
     GroupRoutingModule,
-    SharedModule
+    SharedModule,
+    NgSelectModule,
+    BsDatepickerModule.forRoot(),
+    ReactiveFormsModule,
+    FormsModule,
 ]
 })
 export class GroupModule { }

@@ -51,3 +51,11 @@
 .development-individual {
   background-color: #da3bda;
 }
+
+//posicion del filtro y de ñps modales de la tabla
+
+.card-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
