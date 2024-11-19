@@ -34,13 +34,13 @@
                 <td>
                   <div class="btn-group">
                     <button
-                      class="btn btn-sm btn-light mt-2"
-                      style="padding: 0.375rem 0.5rem"
+                      class="btn btn-sm mt-2 btn-light"
+                      style="padding: 0.375rem 0.9rem"
                       ngbTooltip="Ver Información"
                       tooltipClass="custom-tooltip"
                       (click)="openViewGroupModal(item)"
                     >
-                      <i class="fa-solid fa-magnifying-glass"></i>
+                      <i class="fa-solid fa-eye"></i>
                     </button>
                     <!-- <button
                       class="btn btn-sm btn-light mt-2"
@@ -55,10 +55,23 @@
                 </td>
                 <td>{{ item.membersNames }}</td>
                 <td>{{ item.modalityName }}</td>
-                <td>{{ item.developmentMechanismName }}</td>
-                <td>{{ item.topicTitle || 'N/A' }}</td>
+                <td>
+                  <div class="d-flex align-items-center">
+                    <span
+                      [ngClass]="
+                        getDevelopmentMechanismClass(
+                          item.developmentMechanismName
+                        )
+                      "
+                      class="status-badge"
+                    >
+                      {{ item.developmentMechanismName }}
+                    </span>
+                  </div>
+                </td>
+                <td ellipsisOverflow>{{ item.topicTitle || "N/A" }}</td>
                 <td>{{ item.preferredTutorsNames }}</td>
-                <td>{{ item.createdAt | date: 'short' }}</td>
+                <td>{{ item.createdAt | date : "short" }}</td>
               </tr>
             </tbody>
             <tbody *ngIf="isLoading">
@@ -72,7 +85,9 @@
             </tbody>
             <tbody *ngIf="!isLoading && groups.length === 0">
               <tr>
-                <td colspan="7" class="text-center">No hay grupos disponibles.</td>
+                <td colspan="7" class="text-center">
+                  No hay grupos disponibles.
+                </td>
               </tr>
             </tbody>
           </table>

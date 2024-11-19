@@ -23,6 +23,7 @@ import { CustomPaginationComponent } from './components/paginations/custom-pagin
 import { BootstrapModalComponent } from './components/modals/bootstrap-modal/bootstrap-modal/bootstrap-modal.component';
 import { NgSelectModule } from '@ng-select/ng-select';
 import { BasicTableComponent } from './components/table/basic-table/basic-table.component';
+import { EllipsisOverflowDirective } from './directives/ellipsis-overflow.directive';
 
 @NgModule({
   declarations: [
@@ -42,6 +43,7 @@ import { BasicTableComponent } from './components/table/basic-table/basic-table.
     CustomPaginationComponent,
     BootstrapModalComponent,
     BasicTableComponent,
+    EllipsisOverflowDirective
   ],
   imports: [
     CommonModule,
@@ -62,7 +64,10 @@ import { BasicTableComponent } from './components/table/basic-table/basic-table.
     BreadcrumbComponent,
     CustomPaginationComponent,
     NgSelectModule,
-    BasicTableComponent
+    BasicTableComponent,
+
+    //directivas aqui
+    EllipsisOverflowDirective
   ],
 })
 export class SharedModule {}

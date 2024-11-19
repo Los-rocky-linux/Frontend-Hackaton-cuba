@@ -29,9 +29,9 @@
               <tr>
                 <th>Acciones</th>
                 <th>Modalidad</th>
+                <th>Mecanismo de Desarrollo</th>
                 <th>Título del Tema</th>
                 <th>Descripción del Problema</th>
-                <th>Tipo de Desarrollo</th>
                 <th>Tutores Preferidos</th>
                 <th>Creado Por</th>
                 <th>Compañero</th>
@@ -48,7 +48,9 @@
               </tr>
             </tbody>
             <tbody *ngIf="!isLoading && enrollments.length > 0">
-              <tr *ngFor="let item of enrollments; trackBy: trackByEnrollmentId">
+              <tr
+                *ngFor="let item of enrollments; trackBy: trackByEnrollmentId"
+              >
                 <td>
                   <div class="btn-group">
                     <button
@@ -72,18 +74,32 @@
                   </div>
                 </td>
                 <td>{{ item.modalityName }}</td>
-                <td>{{ item.topicTitle || 'N/A' }}</td>
-                <td>{{ item.problemDescription || 'N/A' }}</td>
-                <td>{{ item.developmentTypeName }}</td>
+                <td>
+                  <div class="d-flex align-items-center">
+                    <span
+                      [ngClass]="
+                        getDevelopmentMechanismClass(item.developmentTypeName)
+                      "
+                      class="status-badge"
+                    >
+                      {{ item.developmentTypeName }}
+                    </span>
+                  </div>
+                </td>
+                <td ellipsisOverflow>{{ item.topicTitle || "N/A" }}</td>
+                <td ellipsisOverflow>{{ item.problemDescription || "N/A" }}</td>
+
                 <td>{{ item.preferredTutorsNames }}</td>
                 <td>{{ item.createdByName }}</td>
                 <td>{{ item.partnerName }}</td>
-                <td>{{ item.createdAt | date: 'short' }}</td>
+                <td>{{ item.createdAt | date : "short" }}</td>
               </tr>
             </tbody>
             <tbody *ngIf="!isLoading && enrollments.length === 0">
               <tr>
-                <td colspan="9" class="text-center">No hay inscripciones disponibles.</td>
+                <td colspan="9" class="text-center">
+                  No hay inscripciones disponibles.
+                </td>
               </tr>
             </tbody>
           </table>

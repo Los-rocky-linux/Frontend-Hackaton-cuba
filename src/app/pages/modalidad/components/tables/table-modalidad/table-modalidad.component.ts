@@ -49,7 +49,7 @@ export class TableModalidadComponent implements OnInit, OnDestroy {
             : 'N/A',
           partnerName: enrollment.partner
             ? `${enrollment.partner.name} ${enrollment.partner.lastName}`
-            : 'N/A',
+            : 'Sin compañero',
         }));
         this.collectionSize = response.totalCount;
         this.isLoading = false;
@@ -110,6 +110,21 @@ export class TableModalidadComponent implements OnInit, OnDestroy {
     };
 
     this._bsModalService.openModal(modalConfig);
+  }
+
+  getDevelopmentMechanismClass(
+    developmentMechanismName: string | undefined
+  ): string {
+    if (!developmentMechanismName) {
+      return '';
+    }
+
+    const mechanismClasses: Record<string, string> = {
+      Grupal: 'development-grupal',
+      Individual: 'development-individual',
+    };
+
+    return mechanismClasses[developmentMechanismName] || 'development-default';
   }
 
   reloadTable(): void {

@@ -1,7 +1,10 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
 import { Subscription } from 'rxjs';
 import { GroupService } from '../../../../../core/services/group.service';
-import { Group, GroupDisplay } from '../../../../../core/interfaces/group.interface';
+import {
+  Group,
+  GroupDisplay,
+} from '../../../../../core/interfaces/group.interface';
 import { BootstrapModalConfig } from '../../../../../core/interfaces/IBootstrapModal.interface';
 import { BootstrapModalService } from '../../../../../core/services/boostrap-modal.service';
 import { ViewGroupComponent } from '../../forms/view-group/view-group/view-group.component';
@@ -32,40 +35,47 @@ export class TableGroupComponent implements OnInit, OnDestroy {
   loadGroups(): void {
     console.log('Loading groups data...');
     this.isLoading = true;
-    const subscription = this.groupService.getAllGroups(this.page, this.limit).subscribe({
-      next: (response) => {
-        console.log('Groups data loaded:', response.data.result);
-        this.groups = response.data.result.map((group) => ({
-          ...group,
-          membersNames: this.formatMembers(group.members || []),
-          preferredTutorsNames: this.formatTutors(group.enrollments || []),
-          developmentMechanismName: group.enrollments[0]?.developmentMechanism?.name || 'N/A',
-          modalityName: group.enrollments[0]?.modality?.name || 'N/A',
-          topicTitle: group.enrollments[0]?.topicTitle || 'N/A',
-        }));
-        this.collectionSize = response.data.totalCount;
-        this.isLoading = false;
-      },
-      error: (error) => {
-        console.error('Error loading groups data:', error);
-        this.isLoading = false;
-      },
-    });
+    const subscription = this.groupService
+      .getAllGroups(this.page, this.limit)
+      .subscribe({
+        next: (response) => {
+          console.log('Groups data loaded:', response.data.result);
+          this.groups = response.data.result.map((group) => ({
+            ...group,
+            membersNames: this.formatMembers(group.members || []),
+            preferredTutorsNames: this.formatTutors(group.enrollments || []),
+            developmentMechanismName:
+              group.enrollments[0]?.developmentMechanism?.name || 'N/A',
+            modalityName: group.enrollments[0]?.modality?.name || 'N/A',
+            topicTitle: group.enrollments[0]?.topicTitle || 'N/A',
+          }));
+          this.collectionSize = response.data.totalCount;
+          this.isLoading = false;
+        },
+        error: (error) => {
+          console.error('Error loading groups data:', error);
+          this.isLoading = false;
+        },
+      });
     this.subscriptions.push(subscription);
   }
 
   listenToModalClose(): void {
-    const modalCloseSubscription = this._bsModalService.getModalClosed().subscribe((closed) => {
-      if (closed) {
-        this.reloadTable();
-      }
-    });
+    const modalCloseSubscription = this._bsModalService
+      .getModalClosed()
+      .subscribe((closed) => {
+        if (closed) {
+          this.reloadTable();
+        }
+      });
     this.subscriptions.push(modalCloseSubscription);
   }
 
   formatTutors(enrollments: any[]): string {
     const tutors = enrollments.reduce((acc: string[], enroll) => {
-      const tutorNames = (enroll.preferredTutors || []).map((tutor: { name: any }) => tutor.name);
+      const tutorNames = (enroll.preferredTutors || []).map(
+        (tutor: { name: any }) => tutor.name
+      );
       return acc.concat(tutorNames);
     }, []);
     const uniqueTutors = Array.from(new Set(tutors));
@@ -73,7 +83,10 @@ export class TableGroupComponent implements OnInit, OnDestroy {
   }
 
   formatMembers(members: { name: string; lastName: string }[]): string {
-    return members.map((member) => `${member.name} ${member.lastName}`).join(', ') || 'N/A';
+    return (
+      members.map((member) => `${member.name} ${member.lastName}`).join(', ') ||
+      'N/A'
+    );
   }
 
   openViewGroupModal(group: GroupDisplay): void {
@@ -89,6 +102,21 @@ export class TableGroupComponent implements OnInit, OnDestroy {
   reloadTable(): void {
     console.log('Reloading table...');
     this.loadGroups();
+  }
+
+  getDevelopmentMechanismClass(
+    developmentMechanismName: string | undefined
+  ): string {
+    if (!developmentMechanismName) {
+      return '';
+    }
+
+    const mechanismClasses: Record<string, string> = {
+      Grupal: 'development-grupal',
+      Individual: 'development-individual',
+    };
+
+    return mechanismClasses[developmentMechanismName] || 'development-default';
   }
 
   onPageChange(page: number): void {
