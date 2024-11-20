@@ -73,7 +73,10 @@ export class FilterGroupComponent implements OnInit, OnDestroy {
     const devMechSub = this.enrollmentService.getDevelopmentTypes().subscribe({
       next: (mechanisms) => {
         this.developmentMechanisms = mechanisms;
-        console.log('Mecanismos de desarrollo cargados:', this.developmentMechanisms);
+        console.log(
+          'Mecanismos de desarrollo cargados:',
+          this.developmentMechanisms
+        );
       },
       error: (error) => {
         console.error('Error al cargar mecanismos de desarrollo:', error);
@@ -103,6 +106,8 @@ export class FilterGroupComponent implements OnInit, OnDestroy {
     console.log('Aplicando filtros:', filters);
     this.filterCommunicationService.changeFilter(filters);
   }
+
+  //test
 
   resetFilters(): void {
     this.filterForm.reset();
