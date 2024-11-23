@@ -17,6 +17,7 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { ToastrModule } from 'ngx-toastr';
 import { AuthModule } from './pages/auth/auth.module';
 import { SharedModule } from './shared/shared.module';
+import { UserComponent } from './pages/user/pages/user/user.component';
 export function HttpLoaderFactory(http: HttpClient) {
   return new TranslateHttpLoader(http, './assets/i18n/', '.json');
 }

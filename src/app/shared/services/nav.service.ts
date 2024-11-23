@@ -1,3 +1,4 @@
+import { User } from "../../core/interfaces/global/user.interface";
 import { Injectable, OnDestroy } from "@angular/core";
 import { Subject, BehaviorSubject, fromEvent } from "rxjs";
 import { takeUntil, debounceTime } from "rxjs/operators";
@@ -19,7 +20,7 @@ export interface Menu {
 }
 
 @Injectable({
-  providedIn: 'root',
+  providedIn: "root",
 })
 export class NavService implements OnDestroy {
   private unsubscriber: Subject<any> = new Subject();
@@ -49,7 +50,7 @@ export class NavService implements OnDestroy {
 
   constructor(private router: Router) {
     this.setScreenWidth(window.innerWidth);
-    fromEvent(window, 'resize')
+    fromEvent(window, "resize")
       .pipe(debounceTime(1000), takeUntil(this.unsubscriber))
       .subscribe((evt: any) => {
         this.setScreenWidth(evt.target.innerWidth);
@@ -83,15 +84,15 @@ export class NavService implements OnDestroy {
 
   MENUITEMS: Menu[] = [
     {
-      headTitle1: 'General',
+      headTitle1: "General",
     },
     {
-      title: 'Dashboard',
-      icon: 'home',
-      type: 'link',
-      badgeType: 'light-primary',
+      title: "Dashboard",
+      icon: "home",
+      type: "link",
+      badgeType: "light-primary",
       active: true,
-      path: '/dashboard/default',
+      path: "/dashboard/default",
     },
     // {
     //   headTitle1: 'Testeo',
@@ -108,48 +109,48 @@ export class NavService implements OnDestroy {
     //   ],
     // },
     {
-      headTitle1: 'Separador',
+      headTitle1: "Separador",
     },
     {
-      title: 'example',
-      path:'/ejemplo',
-      icon: 'learning',
-      type: 'link',
-      badgeType: 'light-secondary',
-      active: false, 
+      title: "example",
+      path: "/ejemplo",
+      icon: "learning",
+      type: "link",
+      badgeType: "light-secondary",
+      active: false,
     },
     {
-      headTitle1: 'Choose tema',
+      headTitle1: "Choose tema",
     },
     {
-      title: 'Modality',
-      path:'/modality',
-      icon: 'email',
-      type: 'link',
-      badgeType: 'light-secondary',
-      active: false, 
+      title: "Modality",
+      path: "/modality",
+      icon: "email",
+      type: "link",
+      badgeType: "light-secondary",
+      active: false,
     },
     {
-      headTitle1: 'See Groups',
+      headTitle1: "See Groups",
     },
     {
-      title: 'Groups',
-      path:'/group',
-      icon: 'search',
-      type: 'link',
-      badgeType: 'light-secondary',
-      active: false, 
+      title: "Groups",
+      path: "/group",
+      icon: "search",
+      type: "link",
+      badgeType: "light-secondary",
+      active: false,
     },
     {
-      headTitle1: 'Create Development Types',
+      headTitle1: "Create Development Types",
     },
     {
-      title: 'Development Type',
-      path:'/development-type',
-      icon: 'board',
-      type: 'link',
-      badgeType: 'light-secondary',
-      active: false, 
+      title: "Development Type",
+      path: "/development-type",
+      icon: "board",
+      type: "link",
+      badgeType: "light-secondary",
+      active: false,
     },
     // {
     //   title: 'about us',
@@ -157,11 +158,23 @@ export class NavService implements OnDestroy {
     //   icon: 'gallery',
     //   type: 'link',
     //   badgeType: 'light-secondary',
-    //   active: false, 
+    //   active: false,
     // },
+
+    // utils que no se usaran pero yo (byron) ocupo para testear más rápido. No borrar
+    {
+      headTitle1: "Utils for test",
+    },
+    {
+      title: "Users",
+      path: "/user",
+      icon: "user",
+      type: "link",
+      badgeType: "light-secondary",
+      active: false,
+    },
   ];
 
   // Array
   items = new BehaviorSubject<Menu[]>(this.MENUITEMS);
 }
- 

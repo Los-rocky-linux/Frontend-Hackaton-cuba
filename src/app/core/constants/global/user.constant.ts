@@ -1,37 +1,37 @@
 export const USER_TABLE_COLUMNS = [
   {
     name: "Nombre",
-    prop: "name",
+    dataKey: "name",
     width: 150,
   },
   {
     name: "Apellido",
-    prop: "lastName",
+    dataKey: "lastName",
     width: 150,
   },
   {
     name: "Correo",
-    prop: "email",
+    dataKey: "email",
     width: 150,
   },
   {
     name: "Teléfono",
-    prop: "phone",
+    dataKey: "phone",
     width: 150,
   },
   {
     name: "rol",
-    prop: "rol",
+    dataKey: "rol",
     width: 150,
   },
   {
     name: "Microsoft Id",
-    prop: "microsoftId",
+    dataKey: "microsoftId",
     width: 150,
   },
   {
     name: "Estado",
-    prop: "status",
+    dataKey: "status",
     width: 150,
   },
 ];

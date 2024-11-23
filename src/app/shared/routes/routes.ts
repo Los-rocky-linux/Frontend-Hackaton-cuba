@@ -2,6 +2,10 @@ import { Routes } from "@angular/router";
 
 export const content: Routes = [
   {
+    path: "user",
+    loadChildren: () => import("../../pages/user/user.module").then((m) => m.UserModule),
+  },
+  {
     path: "dashboard",
     loadChildren: () => import("../../pages/dashboard/dashboard.module").then((m) => m.DashboardModule),
   },
