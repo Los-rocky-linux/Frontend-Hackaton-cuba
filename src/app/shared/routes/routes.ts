@@ -2,32 +2,52 @@ import { Routes } from "@angular/router";
 
 export const content: Routes = [
   {
+    path: "management-topic",
+    loadChildren: () =>
+      import("../../pages/management-topic/management-topic.module").then(
+        (m) => m.ManagementTopicModule
+      ),
+  },
+  {
     path: "user",
-    loadChildren: () => import("../../pages/user/user.module").then((m) => m.UserModule),
+    loadChildren: () =>
+      import("../../pages/user/user.module").then((m) => m.UserModule),
   },
   {
     path: "dashboard",
-    loadChildren: () => import("../../pages/dashboard/dashboard.module").then((m) => m.DashboardModule),
+    loadChildren: () =>
+      import("../../pages/dashboard/dashboard.module").then(
+        (m) => m.DashboardModule
+      ),
   },
   {
     path: "user",
-    loadChildren: () => import("../../pages/profile/profile.module").then((m) => m.ProfileModule),
+    loadChildren: () =>
+      import("../../pages/profile/profile.module").then((m) => m.ProfileModule),
   },
   {
     path: "ejemplo",
-    loadChildren: () => import("../../pages/ejemplo/ejemplo.module").then((m) => m.EjemploModule),
+    loadChildren: () =>
+      import("../../pages/ejemplo/ejemplo.module").then((m) => m.EjemploModule),
   },
   {
     path: "modality",
-    loadChildren: () => import("../../pages/modalidad/modalidad.module").then((m) => m.ModalidadModule),
+    loadChildren: () =>
+      import("../../pages/modalidad/modalidad.module").then(
+        (m) => m.ModalidadModule
+      ),
   },
   {
     path: "group",
-    loadChildren: () => import("../../pages/group/group.module").then((m) => m.GroupModule),
+    loadChildren: () =>
+      import("../../pages/group/group.module").then((m) => m.GroupModule),
   },
   {
     path: "development-type",
-    loadChildren: () => import("../../pages/developmentType/development-type.module").then((m) => m.DevelopmentTypeModule),
+    loadChildren: () =>
+      import("../../pages/developmentType/development-type.module").then(
+        (m) => m.DevelopmentTypeModule
+      ),
   },
   // {
   //   path: "widgets",

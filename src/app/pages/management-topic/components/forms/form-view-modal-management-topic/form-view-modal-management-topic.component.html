@@ -1,0 +1,26 @@
+
+<div class="modal-header">
+  <h5 class="modal-title">Detalles del Tema</h5>
+  <button type="button" class="btn-close" aria-label="Close" (click)="activeModal.dismiss('Cross click')"></button>
+</div>
+<div class="modal-body">
+  <div class="mb-4">
+    <label class="form-label">Tema Asignado</label>
+    <p>{{ managementTopic?.assignedTopic }}</p>
+  </div>
+  <div class="mb-4">
+    <label class="form-label">Inscripción</label>
+    <p>{{ managementTopic?.enrollment }}</p>
+  </div>
+  <div class="mb-4">
+    <label class="form-label">Estado</label>
+    <p>{{ managementTopic?.statusManagementTopic }}</p>
+  </div>
+  <!-- <div class="mb-4">
+    <label class="form-label">Descripción del Problema</label>
+    <p>{{ managementTopic?.problemDescription }}</p>
+  </div> -->
+</div>
+<div class="modal-footer">
+  <button type="button" class="btn btn-secondary" (click)="activeModal.dismiss('Close click')">Cerrar</button>
+</div>

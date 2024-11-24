@@ -1,4 +1,3 @@
-import { User } from "../../core/interfaces/global/user.interface";
 import { Injectable, OnDestroy } from "@angular/core";
 import { Subject, BehaviorSubject, fromEvent } from "rxjs";
 import { takeUntil, debounceTime } from "rxjs/operators";
@@ -161,6 +160,28 @@ export class NavService implements OnDestroy {
     //   active: false,
     // },
 
+    {
+      headTitle1: "Comision academic",
+    },
+    {
+      title: "Comision academic",
+    },
+    {
+      title: "Management topic",
+      path: "/management-topic",
+      icon: "user",
+      type: "link",
+      badgeType: "light-secondary",
+      active: false,
+    },
+    {
+      title: "Management tutor",
+      path: "/management-tutor",
+      icon: "user",
+      type: "link",
+      badgeType: "light-secondary",
+      active: false,
+    },
     // utils que no se usaran pero yo (byron) ocupo para testear más rápido. No borrar
     {
       headTitle1: "Utils for test",

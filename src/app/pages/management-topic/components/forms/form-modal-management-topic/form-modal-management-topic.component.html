@@ -1,0 +1,121 @@
+<!-- form-modal-management-topic.component.html -->
+<div class="modal-header">
+  <h5 class="modal-title">Gestión de Tema</h5>
+  <button
+    type="button"
+    class="btn-close"
+    aria-label="Close"
+    (click)="activeModal.dismiss('Cross click')"
+  ></button>
+</div>
+<div class="modal-body">
+  <form [formGroup]="form" (ngSubmit)="onSubmit()">
+    <!-- Tema Asignado -->
+    <div class="mb-4">
+      <label for="assignedTopic" class="form-label">Tema Asignado</label>
+      <input
+        type="text"
+        id="assignedTopic"
+        class="form-control"
+        formControlName="assignedTopic"
+        placeholder="Ingrese el tema asignado"
+      />
+      <div
+        *ngIf="
+          form.get('assignedTopic')?.invalid &&
+          form.get('assignedTopic')?.touched
+        "
+        class="text-danger"
+      >
+        El tema asignado es requerido.
+      </div>
+    </div>
+
+    <!-- Inscripción -->
+    <div class="mb-4">
+      <label for="enrollment" class="form-label">Inscripción</label>
+      <ng-container *ngIf="!isEditMode; else readOnlyEnrollment">
+        <ng-select
+          id="enrollment"
+          [items]="enrollments"
+          bindLabel="createdBy.name"
+          bindValue="_id"
+          placeholder="Seleccione una inscripción"
+          formControlName="enrollment"
+          [searchable]="true"
+          notFoundText="No se encontraron inscripciones"
+        >
+          <ng-template ng-label-tmp let-item="item">
+            {{ item?.createdBy?.name || " Seleccione una inscripción " }}
+            {{ item?.createdBy?.lastName || "" }} -
+            {{ item?.modality?.name || " :) " }}
+          </ng-template>
+          <ng-template ng-option-tmp let-item="item">
+            <div class="row">
+              <div class="col-12">
+                <strong
+                  >{{ item?.createdBy?.name }}
+                  {{ item?.createdBy?.lastName }}</strong
+                >
+              </div>
+              <div class="col-12">
+                <small>Modalidad: {{ item?.modality?.name }}</small>
+              </div>
+              <div class="col-12">
+                <small>Tema Propuesto: {{ item?.topicTitle }}</small>
+              </div>
+            </div>
+          </ng-template>
+        </ng-select>
+        <div
+          *ngIf="
+            form.get('enrollment')?.invalid && form.get('enrollment')?.touched
+          "
+          class="text-danger"
+        >
+          La inscripción es requerida.
+        </div>
+      </ng-container>
+      <ng-template #readOnlyEnrollment>
+        <p class="form-control-plaintext">
+          {{ form.get("enrollment")?.value }}
+        </p>
+      </ng-template>
+    </div>
+
+    <!-- Descripción del Problema -->
+    <div class="mb-4">
+      <label for="problemDescription" class="form-label"
+        >Descripción del Problema</label
+      >
+      <textarea
+        id="problemDescription"
+        rows="4"
+        class="form-control"
+        formControlName="problemDescription"
+        readonly
+      ></textarea>
+    </div>
+
+    <!-- Estado -->
+    <div class="mb-4">
+      <label for="statusManagementTopic" class="form-label">Estado</label>
+      <select
+        id="statusManagementTopic"
+        class="form-control"
+        formControlName="statusManagementTopic"
+      >
+        <option *ngFor="let status of statuses" [value]="status.id">
+          {{ status.name }}
+        </option>
+      </select>
+    </div>
+
+    <!-- Botón Guardar -->
+    <div class="text-end">
+      <button type="submit" class="btn btn-primary" [disabled]="form.invalid">
+        Guardar
+      </button>
+    </div>
+  </form>
+</div>

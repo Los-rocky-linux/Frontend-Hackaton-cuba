@@ -7,49 +7,48 @@ import {
   ApiResponse,
   ApiDataResponse,
 } from "../../interfaces/api-response.interface";
-import { User } from "../../interfaces/global/user.interface";
+import { ManagementTopic } from "../../interfaces/global/management-topic.interface";
 
 @Injectable({
   providedIn: "root",
 })
-export class UserService {
-  private baseUrl = `${environment.api_url}/v1/api/user`;
+export class ManagementTopicService {
+  private baseUrl = `${environment.api_url}/v1/api/management-topic`;
 
   constructor(private http: HttpClient) {}
 
-  getAllUsers(
+  getAllManagementTopics(
     page: number = 1,
     limit: number = 10
-  ): Observable<ApiDataResponse<User>> {
+  ): Observable<ApiDataResponse<ManagementTopic>> {
     const params = new HttpParams()
       .set("page", page.toString())
       .set("limit", limit.toString());
     return this.http
-      .get<ApiResponse<User>>(`${this.baseUrl}/get-all`, { params })
+      .get<ApiResponse<ManagementTopic>>(`${this.baseUrl}/get-all`, { params })
       .pipe(map((response) => response.data));
   }
 
-  getAllTutors(): Observable<ApiDataResponse<User>> {
-    return this.http
-      .get<ApiResponse<User>>(`${this.baseUrl}/get-all-tutor`)
-      .pipe(map((response) => response.data));
-  }
-
-  createUser(userData: User): Observable<ApiResponse<User>> {
-    return this.http.post<ApiResponse<User>>(
+  createManagementTopic(
+    managementTopicData: ManagementTopic
+  ): Observable<ApiResponse<ManagementTopic>> {
+    return this.http.post<ApiResponse<ManagementTopic>>(
       `${this.baseUrl}/create`,
-      userData
+      managementTopicData
     );
   }
 
-  updateUser(id: string, userData: User): Observable<ApiResponse<User>> {
-    return this.http.put<ApiResponse<User>>(
+  updateManagementTopic(
+    id: string,
+    managementTopicData: ManagementTopic
+  ): Observable<ApiResponse<ManagementTopic>> {
+    return this.http.put<ApiResponse<ManagementTopic>>(
       `${this.baseUrl}/update/${id}`,
-      userData
+      managementTopicData
     );
   }
 
-  deleteUser(id: string): Observable<ApiResponse<null>> {
+  deleteManagementTopic(id: string): Observable<ApiResponse<null>> {
     return this.http.delete<ApiResponse<null>>(`${this.baseUrl}/delete/${id}`);
   }
 }
