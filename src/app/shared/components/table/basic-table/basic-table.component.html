@@ -4,10 +4,11 @@
         <tr>
           @for (column of tableColumns; track $index) {
           <th scope="col">{{ column.name | titlecase }}</th>
+
           }
         </tr>
       </thead>
-  
+
       <tbody>
         @if (isLoading) {
         <tr>
@@ -45,4 +46,3 @@
     </table>
   </div>
   <!-- ngbTooltip="{{e[column.dataKey] ? e[column.dataKey].toString() : ''}}" -->
-  

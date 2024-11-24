@@ -2,7 +2,6 @@
 <div>
     <div class="modal-body" *ngIf="groupData; else loading">
       <div class="row">
-        <!-- Tabla Izquierda: Información del Estudiante 1 -->
         <div class="col-md-4" *ngIf="memberEnrollments[0]">
           <h5>Información del Estudiante 1</h5>
           <table class="table table-bordered table-hover">
@@ -51,7 +50,6 @@
           </table>
         </div>
   
-        <!-- Tabla Central: Información del Grupo -->
         <div class="col-md-4">
           <h5>Detalles del Grupo</h5>
           <table class="table table-bordered table-hover">
@@ -88,7 +86,6 @@
           </table>
         </div>
   
-        <!-- Tabla Derecha: Información del Estudiante 2 -->
         <div class="col-md-4" *ngIf="memberEnrollments[1]">
           <h5>Información del Estudiante 2</h5>
           <table class="table table-bordered table-hover">

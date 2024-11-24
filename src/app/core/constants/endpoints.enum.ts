@@ -1,6 +1,6 @@
-
 export enum ApiPathEnum {
-  Enrollment = '/enrollment'
+  Enrollment = '/enrollment',
+  User = '/user',
 }
 
 export enum EnrollmentEndpointEnum {
@@ -8,4 +8,15 @@ export enum EnrollmentEndpointEnum {
   Create = '/create',
   Update = '/update',
   Delete = '/delete',
+}
+
+export enum EndpointEnum {
+  GetAll = '/get-all',
+  Create = '/create',
+  Update = '/update',
+  Delete = '/delete',
+}
+
+export enum UserEndpointEnum {
+  GetAllTutor = '/get-all-tutor',
 }

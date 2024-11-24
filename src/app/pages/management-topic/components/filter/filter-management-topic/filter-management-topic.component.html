@@ -1,0 +1,50 @@
+<div class="row">
+  <div class="col-sm-12 col-xl-12">
+    <div class="card" style="margin-bottom: 0px">
+      <div class="card-header d-flex justify-content-between align-items-center">
+        <h5 class="card-title">Filtro De Búsqueda</h5>
+        <button
+          class="btn btn-link"
+          type="button"
+          (click)="toggleExpand()"
+        >
+          <i
+            class="fa"
+            [ngClass]="{
+              'fa-chevron-up': isExpanded,
+              'fa-chevron-down': !isExpanded
+            }"
+          ></i>
+        </button>
+      </div>
+
+      <div id="filterCardContent" [ngbCollapse]="!isExpanded">
+        <div class="card-body">
+          <form [formGroup]="form" (ngSubmit)="onSubmit()">
+            <div class="row mb-3">
+              <div class="col-sm-4">
+                <label for="filterAssignedTopic" class="col-form-label">Tema Asignado</label>
+                <input type="text" class="form-control" id="filterAssignedTopic" formControlName="assignedTopic" placeholder="Filtrar por tema asignado">
+              </div>
+              <div class="col-sm-4">
+                <label for="filterEnrollment" class="col-form-label">Inscripción</label>
+                <input type="text" class="form-control" id="filterEnrollment" formControlName="enrollment" placeholder="Filtrar por creador de inscripción">
+              </div>
+              <div class="col-sm-4">
+                <label for="filterStatusManagementTopic" class="col-form-label">Estado</label>
+                <select class="form-control" id="filterStatusManagementTopic" formControlName="statusManagementTopic">
+                  <option value="">Todos</option>
+                  <option *ngFor="let status of statuses" [value]="status.id">{{ status.name }}</option>
+                </select>
+              </div>
+            </div>
+            <div class="text-end">
+              <button type="button" class="btn btn-sm btn-secondary me-1" (click)="onReset()">Resetear</button>
+              <button type="submit" class="btn btn-sm btn-primary">Filtrar</button>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

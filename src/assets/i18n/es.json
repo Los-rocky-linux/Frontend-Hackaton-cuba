@@ -8,9 +8,11 @@
     "Modality": "Modalidad",
     "Groups": "Grupos",
     "Development Type":"Tipo de Desarrollo",
-
+    "Users": "Usuarios",
+    "Comision academic": "Comisión académica",
+    "Management topic": "Gestión de tema",
+    "Management tutor": "Gestión de tutor",
     "ModalityModulo": {
         "f":""
     }
 }
-  
