@@ -140,17 +140,17 @@ export class NavService implements OnDestroy {
       badgeType: "light-secondary",
       active: false,
     },
-    {
-      headTitle1: "Create Development Types",
-    },
-    {
-      title: "Development Type",
-      path: "/development-type",
-      icon: "board",
-      type: "link",
-      badgeType: "light-secondary",
-      active: false,
-    },
+    // {
+    //   headTitle1: "Create Development Types",
+    // },
+    // {
+    //   title: "Development Type",
+    //   path: "/development-type",
+    //   icon: "board",
+    //   type: "link",
+    //   badgeType: "light-secondary",
+    //   active: false,
+    // },
     // {
     //   title: 'about us',
     //   path:'/about',

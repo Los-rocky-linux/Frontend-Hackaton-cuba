@@ -78,7 +78,9 @@ export class EnrollmentService {
       .pipe(map((response) => response.data.result));
   }
 
-  getAvailableStudents(): Observable<Array<{ _id: string; name: string; lastName: string }>> {
+  getAvailableStudents(): Observable<
+    Array<{ _id: string; name: string; lastName: string }>
+  > {
     return this.http
       .get<ApiResponse<any>>(`${this.baseUrl}/user/get-all-students`)
       .pipe(map((response) => response.data.result));
