@@ -35,6 +35,7 @@
                 <th>Tutores Preferidos</th>
                 <th>Creado Por</th>
                 <th>Compañero</th>
+                <th>Estado del grupo</th>
                 <th>Fecha de Creación</th>
               </tr>
             </thead>
@@ -62,6 +63,16 @@
                     >
                       <i class="fa-solid fa-eye"></i>
                     </button>
+                    <button
+                      class="btn btn-sm btn-danger mt-2"
+                      style="padding: 0.375rem 0.9rem"
+                      ngbTooltip="Eliminar"
+                      tooltipClass="custom-tooltip"
+                      (click)="confirmDeleteEnrollment(item)"
+                    >
+                      <i class="fa-solid fa-trash"></i>
+                    </button>
+
                     <button
                       class="btn btn-sm btn-success mt-2"
                       style="padding: 0.375rem 0.9rem"
@@ -92,6 +103,15 @@
                 <td>{{ item.preferredTutorsNames }}</td>
                 <td>{{ item.createdByName }}</td>
                 <td>{{ item.partnerName }}</td>
+                <td>
+                  <span
+                    [ngClass]="getGroupStatusClass(item)"
+                    class="group-status-badge"
+                  >
+                    {{ getGroupStatusText(item) }}
+                  </span>
+                </td>
+            
                 <td>{{ item.createdAt | date : "short" }}</td>
               </tr>
             </tbody>

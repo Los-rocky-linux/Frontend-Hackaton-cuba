@@ -23,6 +23,8 @@ export interface Enrollment {
     email: string;
   };
   preferredTutors?: Array<{ _id: string; name: string }>;
+  group?: string;
+  isGroupCreated?: boolean;
   createdAt?: string;
   updatedAt?: string;
 }
