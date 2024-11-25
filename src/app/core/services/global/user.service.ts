@@ -17,6 +17,14 @@ export class UserService {
 
   constructor(private http: HttpClient) {}
 
+  login(email: string, password: string): Observable<any> {
+    const body = { email, password };
+    return this.http.post<ApiResponse<{ token: string; user: User }>>(
+      `${this.baseUrl}/login`,
+      body
+    );
+  }
+
   getAllUsers(
     page: number = 1,
     limit: number = 10
