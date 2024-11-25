@@ -26,7 +26,6 @@ export class FilterGroupComponent implements OnInit, OnDestroy {
     private filterCommunicationService: FilterCommunicationService
   ) {
     this.filterForm = this.fb.group({
-      creationDate: [null],
       members: [null],
       modality: [null],
       developmentMechanism: [null],
