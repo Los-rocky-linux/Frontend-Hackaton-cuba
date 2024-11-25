@@ -1,0 +1,133 @@
+<div class="modal-header">
+  <h5 class="modal-title">{{ isEditMode ? 'Editar Usuario' : 'Agregar Usuario' }}</h5>
+  <button type="button" class="btn-close" aria-label="Close" (click)="activeModal.dismiss('Cross click')"></button>
+</div>
+<div class="modal-body">
+  <form [formGroup]="form" (ngSubmit)="onSubmit()">
+    <!-- Nombre -->
+    <div class="mb-4">
+      <label for="name" class="form-label">Nombre</label>
+      <input
+        type="text"
+        id="name"
+        class="form-control"
+        formControlName="name"
+        placeholder="Ingrese el nombre"
+      />
+      <div *ngIf="form.get('name')?.invalid && form.get('name')?.touched" class="text-danger">
+        El nombre es requerido.
+      </div>
+    </div>
+
+    <!-- Apellido -->
+    <div class="mb-4">
+      <label for="lastName" class="form-label">Apellido</label>
+      <input
+        type="text"
+        id="lastName"
+        class="form-control"
+        formControlName="lastName"
+        placeholder="Ingrese el apellido"
+      />
+      <div *ngIf="form.get('lastName')?.invalid && form.get('lastName')?.touched" class="text-danger">
+        El apellido es requerido.
+      </div>
+    </div>
+
+    <!-- Correo -->
+    <div class="mb-4">
+      <label for="email" class="form-label">Correo</label>
+      <input
+        type="email"
+        id="email"
+        class="form-control"
+        formControlName="email"
+        placeholder="Ingrese el correo"
+      />
+      <div *ngIf="form.get('email')?.invalid && form.get('email')?.touched" class="text-danger">
+        El correo es requerido y debe ser válido.
+      </div>
+    </div>
+
+    <!-- Teléfono -->
+    <div class="mb-4">
+      <label for="phone" class="form-label">Teléfono</label>
+      <input
+        type="text"
+        id="phone"
+        class="form-control"
+        formControlName="phone"
+        placeholder="Ingrese el teléfono"
+      />
+      <div *ngIf="form.get('phone')?.invalid && form.get('phone')?.touched" class="text-danger">
+        El teléfono es requerido.
+      </div>
+    </div>
+
+    <!-- Rol -->
+    <div class="mb-4">
+      <label for="rol" class="form-label">Rol</label>
+      <select
+        id="rol"
+        class="form-control"
+        formControlName="rol"
+      >
+        <option *ngFor="let role of roles" [value]="role._id">{{ role.roleName }}</option>
+      </select>
+      <div *ngIf="form.get('rol')?.invalid && form.get('rol')?.touched" class="text-danger">
+        El rol es requerido.
+      </div>
+    </div>
+
+    <!-- Contraseña -->
+    <div class="mb-4" *ngIf="!isEditMode">
+      <label for="password" class="form-label">Contraseña</label>
+      <input
+        type="password"
+        id="password"
+        class="form-control"
+        formControlName="password"
+        placeholder="Ingrese la contraseña"
+      />
+      <div *ngIf="form.get('password')?.invalid && form.get('password')?.touched" class="text-danger">
+        La contraseña es requerida.
+      </div>
+    </div>
+
+    <!-- Microsoft Id -->
+    <div class="mb-4">
+      <label for="microsoftId" class="form-label">Microsoft Id</label>
+      <input
+        type="text"
+        id="microsoftId"
+        class="form-control"
+        formControlName="microsoftId"
+        placeholder="Ingrese el Microsoft Id"
+      />
+      <div *ngIf="form.get('microsoftId')?.invalid && form.get('microsoftId')?.touched" class="text-danger">
+        El Microsoft Id es requerido.
+      </div>
+    </div>
+
+    <!-- Estado -->
+    <div class="mb-4">
+      <label for="status" class="form-label">Estado</label>
+      <select
+        id="status"
+        class="form-control"
+        formControlName="status"
+      >
+        <option [value]="true">Activo</option>
+        <option [value]="false">Inactivo</option>
+      </select>
+    </div>
+
+    <!-- Botón Guardar -->
+    <div class="text-end">
+      <button type="submit" class="btn btn-primary" [disabled]="form.invalid">
+        Guardar
+      </button>
+    </div>
+  </form>
+</div>
+
