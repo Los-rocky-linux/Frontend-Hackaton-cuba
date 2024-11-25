@@ -60,7 +60,7 @@ export class FormModalidadComponent implements OnInit, OnDestroy {
   }
 
   loadRelatedData(): void {
-    const userId = '67310a9457493987b0c28de2'; // Simulate logged-in user ID
+    const userId = '6744c65df3256ecd199744ad'; // Simulate logged-in user ID
 
     const modalitiesSub = this.enrollmentService.getModalities().subscribe(
       (modalities) => {
