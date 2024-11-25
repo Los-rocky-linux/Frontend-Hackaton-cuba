@@ -1,0 +1,21 @@
+<div class="modal-header">
+  <h5 class="modal-title">Detalles del Tutor</h5>
+  <button type="button" class="btn-close" aria-label="Close" (click)="activeModal.dismiss('Cross click')"></button>
+</div>
+<div class="modal-body">
+  <div class="mb-4">
+    <label class="form-label">Tutor Asignado</label>
+    <p>{{ managementTutor?.assignedTutor }}</p>
+  </div>
+  <div class="mb-4">
+    <label class="form-label">Inscripción</label>
+    <p>{{ managementTutor?.enrollment }}</p>
+  </div>
+  <div class="mb-4">
+    <label class="form-label">Estado</label>
+    <p>{{ managementTutor?.statusManagementTutor ? 'Activo' : 'Inactivo' }}</p>
+  </div>
+</div>
+<div class="modal-footer">
+  <button type="button" class="btn btn-secondary" (click)="activeModal.dismiss('Close click')">Cerrar</button>
+</div>
