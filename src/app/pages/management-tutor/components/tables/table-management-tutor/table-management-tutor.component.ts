@@ -196,7 +196,10 @@ export class TableManagementTutorComponent implements OnInit {
     this.filteredData = this.tableData.filter((tutor) => {
       const assignedTutorMatch =
         !filter.assignedTutor ||
-        tutor.assignedTutor.includes(filter.assignedTutor);
+        this.tutors[tutor.assignedTutor]?.name.includes(filter.assignedTutor) ||
+        this.tutors[tutor.assignedTutor]?.lastName.includes(
+          filter.assignedTutor
+        );
       const enrollmentMatch =
         !filter.enrollment ||
         this.enrollments[tutor.enrollment]?.createdBy.name.includes(
@@ -205,13 +208,21 @@ export class TableManagementTutorComponent implements OnInit {
         this.enrollments[tutor.enrollment]?.createdBy.lastName.includes(
           filter.enrollment
         );
+      const assignedTopicMatch =
+        !filter.assignedTopic ||
+        this.topics[tutor.assignedTopic]?.assignedTopic.includes(
+          filter.assignedTopic
+        );
       const statusManagementTutorMatch =
         filter.statusManagementTutor === "" ||
         tutor.statusManagementTutor ===
           (filter.statusManagementTutor === "true");
 
       return (
-        assignedTutorMatch && enrollmentMatch && statusManagementTutorMatch
+        assignedTutorMatch &&
+        enrollmentMatch &&
+        assignedTopicMatch &&
+        statusManagementTutorMatch
       );
     });
   }
