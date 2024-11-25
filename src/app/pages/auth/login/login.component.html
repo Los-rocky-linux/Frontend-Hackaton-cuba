@@ -1,8 +1,6 @@
 <div class="container-fluid">
   <div class="row">
-    <div
-      class="col-xl-7 order-1 login-background"
-    >
+    <div class="col-xl-7 order-1 login-background">
       <img
         class="bg-img-cover bg-center d-none"
         src="assets/images/login/1.jpg"
@@ -13,11 +11,15 @@
       <div class="login-card login-dark">
         <div>
           <div class="login-main">
+            <div class="alert alert-danger" *ngIf="errorMessage">
+              {{ errorMessage }}
+            </div>
             <form
               class="theme-form needs-validation"
               [class.was-validated]="!loginForm.valid"
               novalidate=""
-              [formGroup]="loginForm" (ngSubmit)="onSubmit()"
+              [formGroup]="loginForm"
+              (ngSubmit)="onSubmit()"
             >
               <h4>Ingres su cuenta</h4>
               <p>Introduzca su correo y su contraseña para iniciar sesión</p>
@@ -61,11 +63,12 @@
                 />
                 <div
                   class="invalid-feedback"
-                  *ngIf="loginForm.controls.password.touched && loginForm.controls.password.errors?.required"
-
+                  *ngIf="
+                    loginForm.controls.password.touched &&
+                    loginForm.controls.password.errors?.required
+                  "
                 >
-
-                La contraseña es requerida.
+                  La contraseña es requerida.
                 </div>
                 <div class="show-hide" (click)="showPassword()" *ngIf="!show">
                   <span class="show"></span>
@@ -77,11 +80,9 @@
               <div class="form-group mb-0">
                 <div class="checkbox p-0">
                   <input id="checkbox1" type="checkbox" />
-                  <label  for="checkbox1"
-                    >Recordar contraseña</label
-                  >
+                  <label for="checkbox1">Recordar contraseña</label>
                 </div>
-                
+
                 <button
                   class="btn btn-primary d-block w-100"
                   type="submit"

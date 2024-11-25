@@ -5,6 +5,7 @@ export interface User {
   email: string;
   phone: string;
   rol: string;
+  password: string;
   microsoftId: string;
   status: boolean;
 }
