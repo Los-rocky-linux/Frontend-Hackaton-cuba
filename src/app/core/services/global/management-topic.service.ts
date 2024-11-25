@@ -29,6 +29,45 @@ export class ManagementTopicService {
       .pipe(map((response) => response.data));
   }
 
+  // getManagementTopicByEnrollment(
+  //   enrollmentId: string
+  // ): Observable<ManagementTopic> {
+  //   return this.http
+  //     .get<ApiResponse<ApiDataResponse<any>>>(
+  //       `${this.baseUrl}/get-by-enrollment/${enrollmentId}`
+  //     )
+  //     .pipe(
+  //       map((response) => {
+  //         // Extrae manualmente la estructura del ManagementTopic desde el campo `data`
+  //         const data = response.data as any; // Utiliza `any` para evitar conflictos
+  //         const managementTopic: ManagementTopic = {
+  //           _id: data._id || "", // Si no viene en la respuesta, deja un valor por defecto
+  //           assignedTopic: data.assignedTopic || "",
+  //           enrollment: data.enrollment || "",
+  //           statusManagementTopic: data.statusManagementTopic || "",
+  //         };
+  //         return managementTopic;
+  //       })
+  //     );
+  // }
+
+  getManagementTopicByEnrollment(
+    enrollmentId: string
+  ): Observable<{ _id: string; assignedTopic: string }> {
+    return this.http
+      .get<any>(`${this.baseUrl}/get-by-enrollment/${enrollmentId}`)
+      .pipe(
+        map((response) => {
+          // Accede a los datos anidados sin romper las interfaces actuales
+          const managementTopic = response.data?.assignedTopic?.result[0];
+          if (!managementTopic) {
+            throw new Error("No se encontró el tema asignado");
+          }
+          return managementTopic; // Devuelve el primer elemento
+        })
+      );
+  }
+
   createManagementTopic(
     managementTopicData: ManagementTopic
   ): Observable<ApiResponse<ManagementTopic>> {

@@ -1,0 +1,151 @@
+<div class="modal-header">
+  <h5 class="modal-title">Gestión de Tutor</h5>
+  <button
+    type="button"
+    class="btn-close"
+    aria-label="Close"
+    (click)="activeModal.dismiss('Cross click')"
+  ></button>
+</div>
+<div class="modal-body">
+  <form [formGroup]="form" (ngSubmit)="onSubmit()">
+    <!-- Tutor Asignado -->
+    <div class="mb-4">
+      <label for="assignedTutor" class="form-label">Tutor Asignado</label>
+      <ng-select
+        id="assignedTutor"
+        [items]="tutors"
+        bindLabel="name"
+        bindValue="_id"
+        placeholder="Seleccione un tutor"
+        formControlName="assignedTutor"
+        [searchable]="true"
+        notFoundText="No se encontraron tutores"
+      >
+        <ng-template ng-label-tmp let-item="item">
+          {{ item?.name || " Seleccione un tutor " }}
+        </ng-template>
+        <ng-template ng-option-tmp let-item="item">
+          <div class="row">
+            <div class="col-12">
+              <strong>{{ item?.name }}</strong>
+            </div>
+          </div>
+        </ng-template>
+      </ng-select>
+      <div
+        *ngIf="
+          form.get('assignedTutor')?.invalid &&
+          form.get('assignedTutor')?.touched
+        "
+        class="text-danger"
+      >
+        El tutor asignado es requerido.
+      </div>
+    </div>
+
+    <!-- Inscripción -->
+    <div class="mb-4">
+      <label for="enrollment" class="form-label">Inscripción</label>
+      <ng-select
+        id="enrollment"
+        [items]="enrollments"
+        bindLabel="createdBy.name"
+        bindValue="_id"
+        placeholder="Seleccione una inscripción"
+        formControlName="enrollment"
+        [searchable]="true"
+        notFoundText="No se encontraron inscripciones"
+      >
+        <ng-template ng-label-tmp let-item="item">
+          {{ item?.createdBy?.name || " Seleccione una inscripción " }}
+          {{ item?.createdBy?.lastName || "" }} -
+          {{ item?.modality?.name || " :) " }}
+        </ng-template>
+        <ng-template ng-option-tmp let-item="item">
+          <div class="row">
+            <div class="col-12">
+              <strong
+                >{{ item?.createdBy?.name }}
+                {{ item?.createdBy?.lastName }}</strong
+              >
+            </div>
+            <div class="col-12">
+              <small>Modalidad: {{ item?.modality?.name }}</small>
+            </div>
+            <div class="col-12">
+              <small>Tema Asignado: {{ item?.assignedTopic }}</small>
+            </div>
+          </div>
+        </ng-template>
+      </ng-select>
+      <div
+        *ngIf="
+          form.get('enrollment')?.invalid && form.get('enrollment')?.touched
+        "
+        class="text-danger"
+      >
+        La inscripción es requerida.
+      </div>
+    </div>
+
+    <!-- Tema Asignado -->
+    <!-- <div class="mb-4">
+      <label for="assignedTopic" class="form-label">Tema Asignado</label>
+      <input
+        type="text"
+        id="assignedTopic"
+        class="form-control"
+        formControlName="assignedTopic"
+        readonly
+      />
+    </div> -->
+    <div class="mb-4">
+      <label for="assignedTopic" class="form-label">Tema Asignado</label>
+      <input
+        type="text"
+        id="assignedTopic"
+        class="form-control"
+        [value]="assignedTopicName"
+        readonly
+      />
+    </div>
+
+    <!-- Periodo Académico -->
+    <div class="mb-4">
+      <label for="academicPeriod" class="form-label">Periodo Académico</label>
+      <select
+        id="academicPeriod"
+        class="form-control"
+        formControlName="academicPeriod"
+      >
+        <option *ngFor="let period of academicPeriods" [value]="period">
+          {{ period }}
+        </option>
+      </select>
+    </div>
+
+    <!-- Estado -->
+    <div class="mb-4">
+      <label for="statusManagementTutor" class="form-label">Estado</label>
+      <select
+        id="statusManagementTutor"
+        class="form-control"
+        formControlName="statusManagementTutor"
+      >
+        <option *ngFor="let status of statuses" [value]="status.id">
+          {{ status.name }}
+        </option>
+      </select>
+    </div>
+
+    <!-- Botón Guardar -->
+    <div class="text-end">
+      <button type="submit" class="btn btn-primary" [disabled]="form.invalid">
+        Guardar
+      </button>
+    </div>
+  </form>
+</div>
+
+<pre>{{ form.value | json }}</pre>
