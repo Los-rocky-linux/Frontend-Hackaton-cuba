@@ -32,10 +32,8 @@ export class ViewGroupComponent implements OnInit, OnDestroy {
   ngOnInit(): void {
     this.subscriptions.add(
       this._bsModalService.getDataIssued().subscribe((data) => {
-        console.log('Received data from modal service:', data);
         if (data) {
           this.groupData = data;
-          console.log('Group data assigned:', this.groupData);
           this.mapMembersToEnrollments();
         } else {
           console.error('Group data not received');
@@ -48,7 +46,6 @@ export class ViewGroupComponent implements OnInit, OnDestroy {
     this.subscriptions.unsubscribe();
   }
 
-  // Mapea cada miembro con su inscripción correspondiente
   mapMembersToEnrollments(): void {
     this.memberEnrollments = this.groupData.members.map((member) => {
       const enrollment = this.groupData.enrollments.find(
@@ -58,14 +55,12 @@ export class ViewGroupComponent implements OnInit, OnDestroy {
     });
   }
 
-  // Formatear tutores para cada inscripción
   formatTutors(tutors: Tutor[]): string {
     const tutorNames = tutors.map((tutor) => tutor.name.trim());
     const uniqueTutors = Array.from(new Set(tutorNames));
     return uniqueTutors.join(', ') || 'N/A';
   }
 
-  // Formatear miembros
   formatMembers(members: Member[]): string {
     return (
       members.map((member) => `${member.name} ${member.lastName}`).join(', ') ||
@@ -81,6 +76,5 @@ export class ViewGroupComponent implements OnInit, OnDestroy {
 
   closeModal(): void {
     this.activeModal.dismiss();
-    // this._bsModalService.updateModalClosed(true);
   }
 }

@@ -74,7 +74,7 @@ export class TableManagementTutorComponent implements OnInit {
     // Añade esta función
     this.userService.getAllTutors().subscribe((response) => {
       response.result.forEach((tutor) => {
-        this.tutors[tutor._id] = tutor;
+        this.tutors[tutor.id] = tutor;
       });
     });
   }

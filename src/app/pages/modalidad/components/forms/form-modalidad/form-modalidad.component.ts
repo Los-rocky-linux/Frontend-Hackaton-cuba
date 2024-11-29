@@ -6,6 +6,8 @@ import { ToastrService } from 'ngx-toastr';
 import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
 import { BootstrapModalService } from '../../../../../core/services/boostrap-modal.service';
 import { Subscription } from 'rxjs';
+import { User } from '../../../../../core/interfaces/global/user.interface';
+import { UserService } from '../../../../../core/services/global/user.service';
 
 @Component({
   selector: 'app-form-modalidad',
@@ -23,13 +25,15 @@ export class FormModalidadComponent implements OnInit, OnDestroy {
   availableStudents: Array<{ _id: string; fullName: string }> = [];
   showPartnerSelection = false;
   private subscriptions: Subscription[] = [];
+  currentUser: User | null = null;
 
   constructor(
     private fb: FormBuilder,
     private enrollmentService: EnrollmentService,
     private toastr: ToastrService,
     public activeModal: NgbActiveModal,
-    private bootstrapModalService: BootstrapModalService
+    private bootstrapModalService: BootstrapModalService,
+    private userService: UserService
   ) {
     this.enrollmentForm = this.fb.group({
       topicTitle: ['', Validators.required],
@@ -45,8 +49,17 @@ export class FormModalidadComponent implements OnInit, OnDestroy {
   }
 
   ngOnInit(): void {
+    this.getCurrentUser();
     this.getModalData();
     this.loadRelatedData();
+  }
+
+  getCurrentUser(): void {
+    this.currentUser = this.userService.getCurrentUser();
+    if (!this.currentUser) {
+      this.toastr.error('Debe iniciar sesión para realizar esta acción.');
+      this.activeModal.dismiss();
+    }
   }
 
   getModalData(): void {
@@ -54,59 +67,43 @@ export class FormModalidadComponent implements OnInit, OnDestroy {
       this.bootstrapModalService.getDataIssued().subscribe((data) => {
         this.isEdit = data.isEdit;
         this.enrollmentData = data.enrollmentData;
-        console.log('Modal data received:', data);
       })
     );
   }
 
   loadRelatedData(): void {
-    const userId = '6744c65df3256ecd199744ad'; // Simulate logged-in user ID
-
-    const modalitiesSub = this.enrollmentService.getModalities().subscribe(
-      (modalities) => {
+    const userId = this.currentUser?.id || '';
+    const modalitiesSub = this.enrollmentService
+      .getModalities()
+      .subscribe((modalities) => {
         this.modalities = modalities;
         this.checkIfEditMode();
-      },
-      () => {
-        // Manejo de errores si es necesario
-      }
-    );
+      });
     this.subscriptions.push(modalitiesSub);
 
-    const developmentTypesSub = this.enrollmentService.getDevelopmentTypes().subscribe(
-      (developmentTypes) => {
+    const developmentTypesSub = this.enrollmentService
+      .getDevelopmentTypes()
+      .subscribe((developmentTypes) => {
         this.developmentTypes = developmentTypes;
         this.checkIfEditMode();
-      },
-      () => {
-        // Manejo de errores si es necesario
-      }
-    );
+      });
     this.subscriptions.push(developmentTypesSub);
 
-    const tutorsSub = this.enrollmentService.getTutors().subscribe(
-      (tutors) => {
-        this.tutors = tutors;
-      },
-      () => {
-        // Manejo de errores si es necesario
-      }
-    );
+    const tutorsSub = this.enrollmentService.getTutors().subscribe((tutors) => {
+      this.tutors = tutors;
+    });
     this.subscriptions.push(tutorsSub);
 
-    const studentsSub = this.enrollmentService.getAvailableStudents().subscribe(
-      (students) => {
+    const studentsSub = this.enrollmentService
+      .getAvailableStudents()
+      .subscribe((students) => {
         this.availableStudents = students
           .filter((student) => student._id !== userId)
           .map((student) => ({
             _id: student._id,
             fullName: `${student.name} ${student.lastName}`,
           }));
-      },
-      () => {
-        // Manejo de errores si es necesario
-      }
-    );
+      });
     this.subscriptions.push(studentsSub);
   }
 
@@ -117,50 +114,38 @@ export class FormModalidadComponent implements OnInit, OnDestroy {
       this.modalities.length > 0 &&
       this.developmentTypes.length > 0
     ) {
-      console.log('Editing enrollment:', this.enrollmentData);
-  
-      // Asignar valores al formulario
       this.enrollmentForm.patchValue({
         topicTitle: this.enrollmentData.topicTitle,
         problemDescription: this.enrollmentData.problemDescription,
         modality: this.enrollmentData.modality?._id || null,
         developmentType: this.enrollmentData.developmentMechanism?._id || null,
         partner: this.enrollmentData.partner?._id || null,
-        preferredTutors: this.enrollmentData.preferredTutors?.map((tutor) => tutor._id) || [],
+        preferredTutors:
+          this.enrollmentData.preferredTutors?.map((tutor) => tutor._id) || [],
       });
-  
-      // Deshabilitar campos que no se deben editar
+
       this.enrollmentForm.get('modality')?.disable();
       this.enrollmentForm.get('developmentType')?.disable();
       this.enrollmentForm.get('partner')?.disable();
-  
-      const developmentTypeId = this.enrollmentData.developmentMechanism?._id || null;
+
+      const developmentTypeId =
+        this.enrollmentData.developmentMechanism?._id || null;
       const selectedDevelopmentType = this.developmentTypes.find(
         (type) => type._id === developmentTypeId
       );
-  
-      console.log(
-        'Selected development type in checkIfEditMode:',
-        selectedDevelopmentType
-      );
-  
-      // Solo actualizar visibilidad del campo compañero si está permitido
+
       this.onDevelopmentTypeChange(selectedDevelopmentType);
     }
   }
-  
 
   onDevelopmentTypeChange(event: any): void {
-    console.log('onDevelopmentTypeChange event:', event);
     const developmentType = event;
     this.updatePartnerSelectionVisibility(developmentType);
   }
 
   updatePartnerSelectionVisibility(developmentType: any): void {
-    console.log('updatePartnerSelectionVisibility developmentType:', developmentType);
     const isGroupType =
       developmentType && developmentType.name?.toLowerCase() === 'grupal';
-    console.log('Is group type:', isGroupType);
     this.showPartnerSelection = isGroupType;
     const partnerControl = this.enrollmentForm.get('partner');
     if (isGroupType) {
@@ -177,8 +162,13 @@ export class FormModalidadComponent implements OnInit, OnDestroy {
       this.toastr.error('Por favor, complete todos los campos obligatorios');
       return;
     }
-    const userId = '67310a9457493987b0c28de2'; // Simulate logged-in user ID
 
+    if (!this.currentUser) {
+      this.toastr.error('Debe iniciar sesión para realizar esta acción.');
+      return;
+    }
+
+    const userId = this.currentUser.id;
     const enrollmentData = {
       userId,
       topicTitle: this.enrollmentForm.value.topicTitle,
@@ -189,19 +179,17 @@ export class FormModalidadComponent implements OnInit, OnDestroy {
       preferredTutors: this.enrollmentForm.value.preferredTutors,
     };
 
-    console.log('onSubmit: Enrollment data to submit:', enrollmentData);
-
     if (this.isEdit && this.enrollmentData) {
       this.enrollmentService
         .updateEnrollment(this.enrollmentData._id, enrollmentData)
         .subscribe(
           () => this.onSuccess('actualizada'),
-          () => this.onError('actualizar')
+          (error) => this.onError('actualizar', error)
         );
     } else {
       this.enrollmentService.createEnrollment(enrollmentData).subscribe(
         () => this.onSuccess('creada'),
-        () => this.onError('crear')
+        (error) => this.onError('crear', error)
       );
     }
   }
@@ -212,7 +200,7 @@ export class FormModalidadComponent implements OnInit, OnDestroy {
     this.activeModal.close(true);
   }
 
-  private onError(action: string): void {
+  private onError(action: string, error: any): void {
     this.toastr.error(`Error al ${action} la inscripción`);
   }
 
