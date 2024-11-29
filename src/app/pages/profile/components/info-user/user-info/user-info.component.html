@@ -1,0 +1,24 @@
+<div *ngIf="currentUser">
+  <h2>Información del Usuario</h2>
+  <p>
+    <strong>Nombre:</strong> {{ currentUser.name }} {{ currentUser.lastName }}
+  </p>
+  <p><strong>Email:</strong> {{ currentUser.email }}</p>
+  <p><strong>Rol:</strong> {{ currentUser.rol.roleName }}</p>
+
+  <div *ngIf="currentUser.permissions && currentUser.permissions.length > 0">
+    <p><strong>Permisos:</strong></p>
+    <ul>
+      <li *ngFor="let permission of currentUser.permissions">
+        {{ permission }}
+      </li>
+    </ul>
+  </div>
+  <div *ngIf="!currentUser.permissions || currentUser.permissions.length === 0">
+    <p><strong>Permisos:</strong> No se encontraron permisos.</p>
+  </div>
+</div>
+
+<div *ngIf="!currentUser">
+  <p>No hay usuario logueado.</p>
+</div>

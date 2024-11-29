@@ -9,7 +9,7 @@ import { BootstrapModalConfig } from '../../../../../core/interfaces/IBootstrapM
 import { BootstrapModalService } from '../../../../../core/services/boostrap-modal.service';
 import { FormModalidadComponent } from '../../forms/form-modalidad/form-modalidad.component';
 import { ViewEnrollmentComponent } from '../../forms/view-enrollment/view-enrollment.component';
-import Swal from 'sweetalert2'; // Importar SweetAlert2
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-table-modalidad',
@@ -51,7 +51,7 @@ export class TableModalidadComponent implements OnInit, OnDestroy {
           partnerName: enrollment.partner
             ? `${enrollment.partner.name} ${enrollment.partner.lastName}`
             : 'Sin compañero',
-          isGroupCreated: enrollment.isGroupCreated, // Incluir este campo
+          isGroupCreated: enrollment.isGroupCreated,
         }));
         this.collectionSize = response.totalCount;
         this.isLoading = false;
@@ -151,7 +151,6 @@ export class TableModalidadComponent implements OnInit, OnDestroy {
     return enrollment._id;
   }
 
-  // Método para Obtener Texto de Estado del Grupo
   getGroupStatusText(enrollment: EnrollmentDisplay): string {
     if (enrollment.developmentTypeName === 'Individual') {
       return 'Individual';
@@ -162,18 +161,16 @@ export class TableModalidadComponent implements OnInit, OnDestroy {
     }
   }
 
-  // Método para Obtener Clase CSS del Estado del Grupo
   getGroupStatusClass(enrollment: EnrollmentDisplay): string {
     if (enrollment.developmentTypeName === 'Individual') {
-      return 'group-individual'; // Clase CSS para individual
+      return 'group-individual';
     } else if (enrollment.isGroupCreated) {
-      return 'group-formed'; // Clase CSS para grupo formado
+      return 'group-formed';
     } else {
-      return 'group-pending'; // Clase CSS para pendiente
+      return 'group-pending';
     }
   }
 
-  // Método para Confirmar Eliminación con SweetAlert
   confirmDeleteEnrollment(enrollment: EnrollmentDisplay): void {
     Swal.fire({
       title: '¿Estás seguro?',
@@ -191,7 +188,6 @@ export class TableModalidadComponent implements OnInit, OnDestroy {
     });
   }
 
-  // Método para Eliminar la Inscripción
   deleteEnrollment(enrollmentId: string): void {
     this.enrollmentService.deleteEnrollment(enrollmentId).subscribe({
       next: () => {
@@ -203,7 +199,10 @@ export class TableModalidadComponent implements OnInit, OnDestroy {
         this.reloadTable();
       },
       error: (error) => {
-        console.error('[TableModalidadComponent] Error while deleting enrollment:', error);
+        console.error(
+          '[TableModalidadComponent] Error while deleting enrollment:',
+          error
+        );
         Swal.fire(
           'Error',
           error.error.message || 'Ocurrió un error al eliminar la inscripción.',

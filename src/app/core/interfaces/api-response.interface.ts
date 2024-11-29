@@ -9,6 +9,8 @@ export interface ApiResponse<T> {
 export interface ApiDataResponse<T> {
   result: T[];
   totalCount: number;
+  token: any;
+  user: any;
 }
 
 interface MsgTranslate {
