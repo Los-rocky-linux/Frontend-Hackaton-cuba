@@ -87,4 +87,15 @@ export class UserService {
   deleteUser(id: string): Observable<ApiResponse<null>> {
     return this.http.delete<ApiResponse<null>>(`${this.baseUrl}/delete/${id}`);
   }
+  getUserDetails(): Observable<User> {
+    return this.http.get<User>(`${this.baseUrl}/me`).pipe(
+      map((response) => response.data),
+      tap((user) => {
+        localStorage.setItem('currentUser', JSON.stringify(user));
+        this.currentUserSubject.next(user);
+      })
+    );
+  }
+  
+  
 }

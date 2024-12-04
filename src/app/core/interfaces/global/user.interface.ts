@@ -1,7 +1,6 @@
 // user.interface.ts
 
 export interface Rol {
-  //quizas sea -id
   id: string;
   roleName: string;
   description?: string;
@@ -19,4 +18,5 @@ export interface User {
   microsoftId?: string;
   status: boolean;
   permissions: string[];
+  data?: any;
 }

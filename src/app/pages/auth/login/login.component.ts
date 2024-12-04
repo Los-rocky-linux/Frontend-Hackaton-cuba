@@ -50,11 +50,9 @@ export class LoginComponent implements OnInit {
           if (response && response.data) {
             const { token, user } = response.data;
 
-            // Guardar el token en localStorage
             localStorage.setItem("authToken", token);
 
-            // Redirigir al perfil del usuario
-            this.router.navigate(["/dashboard"]);
+            this.router.navigate(["/dashboard/default"]);
           }
         });
     }

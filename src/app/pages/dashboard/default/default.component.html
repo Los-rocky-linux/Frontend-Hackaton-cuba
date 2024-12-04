@@ -1,8 +1,44 @@
-<app-breadcrumb [title]="'Default'" [items]="['Dashboard']" [active_item]="'Default'"></app-breadcrumb>
-<div class="container-fluid">
-  <div class="row widget-grid">
-    <div class="col-xxl-4 col-sm-6 box-col-6">
-      <p>este será la pagina principal!</p>
+<app-breadcrumb
+  [title]="'Default'"
+  [items]="['Dashboard']"
+  [active_item]="'Default'"
+></app-breadcrumb>
+<div class="container-fluid mt-4">
+  <div class="row justify-content-center">
+    <!-- Visión Card -->
+    <div class="col-md-6 mb-4">
+      <div class="card shadow-lg">
+        <div class="card-header bg-primary text-white text-center">
+          <h3>Visión</h3>
+        </div>
+        <div class="card-body">
+          <p class="text-justify">
+            La Universidad Laica Eloy Alfaro de Manabí (ULEAM) se proyecta como
+            una institución de educación superior líder en la formación integral
+            de profesionales, con un fuerte compromiso con el desarrollo social,
+            cultural y económico del país.
+          </p>
+        </div>
+      </div>
+    </div>
+    <!-- Misión Card -->
+    <div class="col-md-6 mb-4">
+      <div class="card shadow-lg">
+        <div class="card-header bg-success text-white text-center">
+          <h3>Misión</h3>
+        </div>
+        <div class="card-body">
+          <p class="text-justify">
+            La ULEAM tiene como misión proporcionar educación superior de
+            calidad, fomentar la investigación y extensión, y promover valores
+            éticos y humanistas para contribuir al bienestar de la sociedad
+            ecuatoriana.
+
+
+            
+          </p>
+        </div>
+      </div>
     </div>
   </div>
 </div>
