@@ -12,10 +12,8 @@ export class UserInfoComponent implements OnInit {
   constructor(private userService: UserService) {}
 
   ngOnInit() {
-    // Obtener el usuario actual del servicio
     this.currentUser = this.userService.getCurrentUser();
 
-    // Suscribirse a los cambios en el usuario actual
     this.userService.currentUser$.subscribe((user) => {
       this.currentUser = user;
     });
