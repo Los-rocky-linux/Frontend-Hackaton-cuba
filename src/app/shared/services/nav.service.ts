@@ -16,6 +16,7 @@ export interface Menu {
   active?: boolean;
   bookmark?: boolean;
   children?: Menu[];
+  roles?: string[];
 }
 
 @Injectable({
@@ -27,6 +28,15 @@ export class NavService implements OnDestroy {
     window.innerWidth
   );
 
+  // Método para filtrar elementos del menú según el rol del usuario
+  filterMenuItemsByRole(role: string): Menu[] {
+    return this.MENUITEMS.filter((item) => {
+      if (item.roles && item.roles.length > 0) {
+        return item.roles.includes(role);
+      }
+      return true;
+    });
+  }
   // Search Box
   public search: boolean = false;
 
@@ -120,6 +130,7 @@ export class NavService implements OnDestroy {
     },
     {
       headTitle1: "Choose tema",
+      roles: ["Administrador", "Estudiante"],
     },
     {
       title: "Workshop Registration",
@@ -128,6 +139,7 @@ export class NavService implements OnDestroy {
       type: "link",
       badgeType: "light-secondary",
       active: false,
+      roles: ["Administrador", "Estudiante"],
     },
     {
       title: "Modality",
@@ -136,9 +148,11 @@ export class NavService implements OnDestroy {
       type: "link",
       badgeType: "light-secondary",
       active: false,
+      roles: ["Administrador", "Estudiante"],
     },
     {
       headTitle1: "See Groups",
+      roles: ["Administrador", "Estudiante"],
     },
     {
       title: "Groups",
@@ -147,6 +161,7 @@ export class NavService implements OnDestroy {
       type: "link",
       badgeType: "light-secondary",
       active: false,
+      roles: ["Administrador", "Estudiante"],
     },
     // {
     //   headTitle1: "Create Development Types",
@@ -170,9 +185,11 @@ export class NavService implements OnDestroy {
 
     {
       headTitle1: "Comision academic",
+      roles: ["Administrador", "Comisión Academica"],
     },
     {
       title: "Comision academic",
+      roles: ["Administrador", "Comisión Academica"],
     },
     {
       title: "Management topic",
@@ -181,6 +198,7 @@ export class NavService implements OnDestroy {
       type: "link",
       badgeType: "light-secondary",
       active: false,
+      roles: ["Administrador", "Comisión Academica"],
     },
     {
       title: "Management tutor",
@@ -189,6 +207,7 @@ export class NavService implements OnDestroy {
       type: "link",
       badgeType: "light-secondary",
       active: false,
+      roles: ["Administrador", "Comisión Academica"],
     },
     {
       title: "Management court",
@@ -197,6 +216,7 @@ export class NavService implements OnDestroy {
       type: "link",
       badgeType: "light-secondary",
       active: false,
+      roles: ["Administrador", "Comisión Academica"],
     },
     {
       title: "Management schedule",
@@ -205,10 +225,12 @@ export class NavService implements OnDestroy {
       type: "link",
       badgeType: "light-secondary",
       active: false,
+      roles: ["Administrador", "Comisión Academica"],
     },
     // utils que no se usaran pero yo (byron) ocupo para testear más rápido. No borrar
     {
       headTitle1: "System Administration",
+      roles: ["Administrador", "Comisión Academica"],
     },
     {
       title: "Users",
@@ -217,6 +239,7 @@ export class NavService implements OnDestroy {
       type: "link",
       badgeType: "light-secondary",
       active: false,
+      roles: ["Administrador", "Comisión Academica"],
     },
   ];
 

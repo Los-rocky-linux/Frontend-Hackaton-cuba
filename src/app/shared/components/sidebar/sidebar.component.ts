@@ -1,12 +1,12 @@
-import { Component, ViewEncapsulation, HostListener } from '@angular/core';
-import { NavigationEnd, Router } from '@angular/router';
-import { Menu, NavService } from '../../services/nav.service';
-import { LayoutService } from '../../services/layout.service';
+import { Component, ViewEncapsulation, HostListener } from "@angular/core";
+import { NavigationEnd, Router } from "@angular/router";
+import { Menu, NavService } from "../../services/nav.service";
+import { LayoutService } from "../../services/layout.service";
 
 @Component({
-  selector: 'app-sidebar',
-  templateUrl: './sidebar.component.html',
-  styleUrls: ['./sidebar.component.scss'],
+  selector: "app-sidebar",
+  templateUrl: "./sidebar.component.html",
+  styleUrls: ["./sidebar.component.scss"],
   encapsulation: ViewEncapsulation.None,
 })
 export class SidebarComponent {
@@ -24,23 +24,25 @@ export class SidebarComponent {
     public navServices: NavService,
     public layout: LayoutService
   ) {
+    const userRole = localStorage.getItem("userRole"); // Obtener el rol del usuario
+    this.menuItems = this.navServices.filterMenuItemsByRole(userRole);
+
     this.navServices.items.subscribe((menuItems) => {
-      this.menuItems = menuItems;
+      this.menuItems = this.navServices.filterMenuItemsByRole(userRole);
       this.router.events.subscribe((event) => {
         if (event instanceof NavigationEnd) {
           menuItems.filter((items) => {
             if (items.path === event.url) {
               this.setNavActive(items);
-              return true; // Agregar esta línea
+              return true;
             }
             if (!items.children) {
               return false;
             }
             return items.children.filter((subItems) => {
-              // Agregar un retorno aquí
               if (subItems.path === event.url) {
                 this.setNavActive(subItems);
-                return true; // Agregar esta línea
+                return true;
               }
               if (!subItems.children) {
                 return false;
@@ -48,7 +50,7 @@ export class SidebarComponent {
               return subItems.children.filter((subSubItems) => {
                 if (subSubItems.path === event.url) {
                   this.setNavActive(subSubItems);
-                  return true; // Agregar esta línea
+                  return true;
                 }
                 return false;
               });
@@ -58,8 +60,41 @@ export class SidebarComponent {
       });
     });
   }
+  // this.navServices.items.subscribe((menuItems) => {
+  //   this.menuItems = menuItems;
+  //   this.router.events.subscribe((event) => {
+  //     if (event instanceof NavigationEnd) {
+  //       menuItems.filter((items) => {
+  //         if (items.path === event.url) {
+  //           this.setNavActive(items);
+  //           return true; // Agregar esta línea
+  //         }
+  //         if (!items.children) {
+  //           return false;
+  //         }
+  //         return items.children.filter((subItems) => {
+  //           // Agregar un retorno aquí
+  //           if (subItems.path === event.url) {
+  //             this.setNavActive(subItems);
+  //             return true; // Agregar esta línea
+  //           }
+  //           if (!subItems.children) {
+  //             return false;
+  //           }
+  //           return subItems.children.filter((subSubItems) => {
+  //             if (subSubItems.path === event.url) {
+  //               this.setNavActive(subSubItems);
+  //               return true; // Agregar esta línea
+  //             }
+  //             return false;
+  //           });
+  //         });
+  //       });
+  //     }
+  //   });
+  // });
 
-  @HostListener('window:resize', ['$event'])
+  @HostListener("window:resize", ["$event"])
   onResize(event: any) {
     this.width = event.target.innerWidth - 500;
   }
