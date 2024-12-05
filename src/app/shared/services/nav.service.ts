@@ -192,7 +192,7 @@ export class NavService implements OnDestroy {
     },
     // utils que no se usaran pero yo (byron) ocupo para testear más rápido. No borrar
     {
-      headTitle1: "Utils for test",
+      headTitle1: "System Administration",
     },
     {
       title: "Users",

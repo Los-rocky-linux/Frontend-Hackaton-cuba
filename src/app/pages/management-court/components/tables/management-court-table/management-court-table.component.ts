@@ -65,7 +65,7 @@ export class ManagementCourtTableComponent implements OnInit {
 
   loadCourts(): void {
     this.userService.getAllCourts().subscribe((response) => {
-      response.result.forEach((court) => {
+      response.result.forEach((court: any) => {
         this.courts[court._id] = `${court.name} ${court.lastName}`;
       });
     });
@@ -132,7 +132,7 @@ export class ManagementCourtTableComponent implements OnInit {
   //   });
   // }
 
-    applyFilter(filter: any): void {
+  applyFilter(filter: any): void {
     if (!filter) {
       this.filteredData = this.tableData;
       return;
@@ -155,7 +155,7 @@ export class ManagementCourtTableComponent implements OnInit {
       return enrollmentMatch && statusManagementCourtMatch;
     });
   }
-  
+
   reloadTable(): void {
     this.loadManagementCourts();
   }
