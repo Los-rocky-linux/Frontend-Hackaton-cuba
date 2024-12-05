@@ -8,21 +8,22 @@ import { full } from './shared/routes/full.routes';
 
 const routes: Routes = [
   {
-    path: '',
-    redirectTo: 'dashboard/default',
-    pathMatch: 'full',
+    path: "",
+    redirectTo: "auth/login",
+    // redirectTo: "dashboard/default",
+    pathMatch: "full",
   },
   {
-    path: 'auth/login',
+    path: "auth/login",
     component: LoginComponent,
   },
   {
-    path: '',
+    path: "",
     component: ContentComponent,
     children: content,
   },
   {
-    path: '',
+    path: "",
     component: FullComponent,
     children: full,
   },
