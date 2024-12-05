@@ -45,6 +45,13 @@ export const content: Routes = [
       ),
   },
   {
+    path: "workshop",
+    loadChildren: () =>
+      import("../../pages/workshop-registration/workshop-registration.module").then(
+        (m) => m.WorkshopRegistrationModule
+      ),
+  },
+  {
     path: "group",
     loadChildren: () =>
       import("../../pages/group/group.module").then((m) => m.GroupModule),
