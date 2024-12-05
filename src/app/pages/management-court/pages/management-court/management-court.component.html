@@ -1,0 +1,23 @@
+<app-breadcrumb
+  [title]="'Comisión Académica'"
+  [items]="['Inicio', 'Comisión Académica']"
+  [active_item]="'Gestión de Tribunales'"
+>
+</app-breadcrumb>
+<div class="container-fluid basic_table">
+  <div class="row">
+    <div class="col-xxl-12 col-xl-12 box-cSol-12">
+      <div class="col-sm-12">
+        <div class="row mt-3">
+          <div class="col-12">
+            <div class="mb-sm-0">
+              <app-management-court-filter></app-management-court-filter>
+              <br />
+            </div>
+          </div>
+        </div>
+        <app-management-court-table></app-management-court-table>
+      </div>
+    </div>
+  </div>
+</div>

@@ -182,6 +182,14 @@ export class NavService implements OnDestroy {
       badgeType: "light-secondary",
       active: false,
     },
+    {
+      title: "Management court",
+      path: "/management-court",
+      icon: "user",
+      type: "link",
+      badgeType: "light-secondary",
+      active: false,
+    },
     // utils que no se usaran pero yo (byron) ocupo para testear más rápido. No borrar
     {
       headTitle1: "Utils for test",

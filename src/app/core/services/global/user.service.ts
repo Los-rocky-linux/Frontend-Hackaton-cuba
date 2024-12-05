@@ -37,6 +37,12 @@ export class UserService {
       .pipe(map((response) => response.data));
   }
 
+  getAllCourts(): Observable<ApiDataResponse<User>> {
+    return this.http
+      .get<ApiResponse<User>>(`${this.baseUrl}/get-all-court`)
+      .pipe(map((response) => response.data));
+  }
+
   getAllTutors(): Observable<ApiDataResponse<User>> {
     return this.http
       .get<ApiResponse<User>>(`${this.baseUrl}/get-all-tutor`)
