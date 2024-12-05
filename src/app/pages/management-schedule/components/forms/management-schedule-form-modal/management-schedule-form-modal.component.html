@@ -1,0 +1,118 @@
+<div class="modal-header">
+  <h5 class="modal-title">{{ schedule ? 'Editar Horario' : 'Crear Horario' }}</h5>
+  <button type="button" class="btn-close" aria-label="Close" (click)="activeModal.dismiss('Cross click')"></button>
+</div>
+<div class="modal-body">
+  <form [formGroup]="form" (ngSubmit)="onSubmit()">
+    <div class="mb-4">
+      <label for="assignedDate" class="form-label">Fecha Asignada</label>
+      <input type="date" id="assignedDate" class="form-control" formControlName="assignedDate" />
+      <div *ngIf="form.get('assignedDate')?.invalid && form.get('assignedDate')?.touched" class="text-danger">
+        La fecha asignada es requerida.
+      </div>
+    </div>
+
+    <div class="mb-4">
+      <label for="assignedCourt" class="form-label">Tribunal Asignado</label>
+      <ng-select
+        id="assignedCourt"
+        [items]="courts"
+        bindLabel="name"
+        bindValue="_id"
+        placeholder="Seleccione un tribunal"
+        formControlName="assignedCourt"
+        [multiple]="true"
+        [searchable]="true"
+        notFoundText="No se encontraron tribunales"
+      >
+        <ng-template ng-label-tmp let-item="item">
+          {{ item?.name || "Seleccione un tribunal" }}
+        </ng-template>
+        <ng-template ng-option-tmp let-item="item">
+          <div class="row">
+            <div class="col-12">
+              <strong>{{ item?.name }}</strong>
+            </div>
+          </div>
+        </ng-template>
+      </ng-select>
+      <div *ngIf="form.get('assignedCourt')?.invalid && form.get('assignedCourt')?.touched" class="text-danger">
+        El tribunal asignado es requerido.
+      </div>
+    </div>
+
+    <div class="mb-4">
+      <label for="assignedTutor" class="form-label">Tutor Asignado</label>
+      <ng-select
+        id="assignedTutor"
+        [items]="tutors"
+        bindLabel="name"
+        bindValue="_id"
+        placeholder="Seleccione un tutor"
+        formControlName="assignedTutor"
+        [searchable]="true"
+        notFoundText="No se encontraron tutores"
+      >
+        <ng-template ng-label-tmp let-item="item">
+          {{ item?.name || "Seleccione un tutor" }}
+        </ng-template>
+        <ng-template ng-option-tmp let-item="item">
+          <div class="row">
+            <div class="col-12">
+              <strong>{{ item?.name }}</strong>
+            </div>
+          </div>
+        </ng-template>
+      </ng-select>
+      <div *ngIf="form.get('assignedTutor')?.invalid && form.get('assignedTutor')?.touched" class="text-danger">
+        El tutor asignado es requerido.
+      </div>
+    </div>
+
+    <div class="mb-4">
+      <label for="enrollment" class="form-label">Inscripción</label>
+      <ng-select
+        id="enrollment"
+        [items]="enrollments"
+        bindLabel="createdBy.name"
+        bindValue="_id"
+        placeholder="Seleccione una inscripción"
+        formControlName="enrollment"
+        [searchable]="true"
+        notFoundText="No se encontraron inscripciones"
+      >
+        <ng-template ng-label-tmp let-item="item">
+          {{ item?.createdBy?.name || "Seleccione una inscripción" }}
+          {{ item?.createdBy?.lastName || "" }} - {{ item?.modality?.name || "" }}
+        </ng-template>
+        <ng-template ng-option-tmp let-item="item">
+          <div class="row">
+            <div class="col-12">
+              <strong>{{ item?.createdBy?.name }} {{ item?.createdBy?.lastName }}</strong>
+            </div>
+            <div class="col-12">
+              <small>Modalidad: {{ item?.modality?.name }}</small>
+            </div>
+          </div>
+        </ng-template>
+      </ng-select>
+      <div *ngIf="form.get('enrollment')?.invalid && form.get('enrollment')?.touched" class="text-danger">
+        La inscripción es requerida.
+      </div>
+    </div>
+
+    <div class="mb-4">
+      <label for="statusSchedule" class="form-label">Estado</label>
+      <select class="form-control" id="statusSchedule" formControlName="statusSchedule">
+        <option [value]="true">Activo</option>
+        <option [value]="false">Inactivo</option>
+      </select>
+    </div>
+
+    <div class="text-end">
+      <button type="button" class="btn btn-secondary me-1" (click)="activeModal.dismiss('Close click')">Cancelar</button>
+      <button type="submit" class="btn btn-primary">Guardar</button>
+    </div>
+  </form>
+  <pre>{{ form.value | json }}</pre>
+</div>
