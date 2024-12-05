@@ -2,6 +2,13 @@ import { Routes } from "@angular/router";
 
 export const content: Routes = [
   {
+    path: "management-court",
+    loadChildren: () =>
+      import("../../pages/management-court/management-court.module").then(
+        (m) => m.ManagementCourtModule
+      ),
+  },
+  {
     path: "management-tutor",
     loadChildren: () =>
       import("../../pages/management-tutor/management-tutor.module").then(
@@ -42,6 +49,13 @@ export const content: Routes = [
     loadChildren: () =>
       import("../../pages/modalidad/modalidad.module").then(
         (m) => m.ModalidadModule
+      ),
+  },
+  {
+    path: "workshop",
+    loadChildren: () =>
+      import("../../pages/workshop-registration/workshop-registration.module").then(
+        (m) => m.WorkshopRegistrationModule
       ),
   },
   {

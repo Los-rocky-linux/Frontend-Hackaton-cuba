@@ -17,9 +17,7 @@ export class ViewEnrollmentComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
-    // Suscripción a los datos enviados al abrir el modal
     this._bsModalService.getDataIssued().subscribe((data: any) => {
-      console.log('Datos de la inscripción recibidos en el modal:', data);
       this.enrollment = data.enrollment;
     });
   }
@@ -32,5 +30,3 @@ export class ViewEnrollmentComponent implements OnInit {
     this.activeModal.dismiss();
   }
 }
-
-//pruebita de push

@@ -1,0 +1,40 @@
+.container-fluid {
+    .card {
+      border-radius: 12px;
+      overflow: hidden;
+  
+      &-header {
+        font-weight: bold;
+        font-size: 1.5rem;
+      }
+  
+      &-body {
+        font-size: 1rem;
+        line-height: 1.6;
+      }
+  
+      box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+      transition: transform 0.3s ease;
+  
+      &:hover {
+        transform: scale(1.05);
+      }
+    }
+  
+    .bg-primary {
+      background-color: #0056b3 !important;
+    }
+  
+    .bg-success {
+      background-color: #28a745 !important;
+    }
+  
+    .text-center {
+      text-align: center;
+    }
+  
+    .text-justify {
+      text-align: justify;
+    }
+  }
+  

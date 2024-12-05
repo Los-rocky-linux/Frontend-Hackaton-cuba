@@ -1,0 +1,120 @@
+<div class="container-fluid">
+  <div class="row justify-content-center">
+    <div class="col-12">
+      <div class="card">
+        <form [formGroup]="workshopForm" (ngSubmit)="onSubmit()">
+          <div class="row mb-4">
+            <!-- Periodo de Inducción -->
+            <div class="col-sm-6 mb-3">
+              <label for="inductionPeriod" class="col-form-label"
+                >Periodo de Inducción</label
+              >
+              <ng-select
+                id="inductionPeriod"
+                formControlName="inductionPeriod"
+                [items]="inductionPeriods"
+                bindLabel="name"
+                bindValue="_id"
+                placeholder="Seleccione un período"
+                [searchable]="true"
+                [clearable]="true"
+                notFoundText="No se encontraron períodos"
+                class="custom-input"
+              ></ng-select>
+              <div
+                *ngIf="isEdit && workshopForm.get('inductionPeriod')?.disabled"
+                class="text-danger ng-star-inserted"
+              >
+                No se puede editar el período de inducción.
+              </div>
+            </div>
+
+            <!-- Carrera -->
+            <div class="col-12 mb-3">
+              <label for="carrera" class="col-form-label">Carrera</label>
+              <input
+                id="carrera"
+                type="text"
+                formControlName="carrera"
+                class="form-control custom-input"
+                placeholder="Ingrese la carrera"
+              />
+              <div
+                *ngIf="
+                  workshopForm.get('carrera')?.invalid &&
+                  workshopForm.get('carrera')?.touched
+                "
+                class="invalid-feedback"
+              >
+                La carrera es requerida.
+              </div>
+            </div>
+
+            <!-- Nivel Aprobado -->
+            <div class="col-sm-6 mb-3">
+              <label for="nivelAprobado" class="col-form-label"
+                >Nivel Aprobado</label
+              >
+              <input
+                id="nivelAprobado"
+                type="number"
+                formControlName="nivelAprobado"
+                class="form-control custom-input"
+                placeholder="Ingrese el nivel aprobado"
+              />
+              <div
+                *ngIf="
+                  workshopForm.get('nivelAprobado')?.invalid &&
+                  workshopForm.get('nivelAprobado')?.touched
+                "
+                class="invalid-feedback"
+              >
+                El nivel aprobado es requerido.
+              </div>
+            </div>
+
+            <!-- Estado -->
+            <!-- <div class="col-sm-6 mb-3">
+                <label for="estado" class="col-form-label">Estado</label>
+                <ng-select
+                  id="estado"
+                  formControlName="estado"
+                  [items]="['activo', 'inactivo']"
+                  placeholder="Seleccione el estado"
+                  [searchable]="false"
+                  [clearable]="true"
+                  class="custom-input"
+                ></ng-select>
+                <div
+                  *ngIf="
+                    workshopForm.get('estado')?.invalid &&
+                    workshopForm.get('estado')?.touched
+                  "
+                  class="invalid-feedback"
+                >
+                  El estado es requerido.
+                </div>
+              </div> -->
+          </div>
+
+          <div class="form-group text-center mt-3">
+            <button
+              type="button"
+              class="btn btn-secondary btn-spacing"
+              (click)="closeModal()"
+            >
+              Cerrar
+            </button>
+            <button
+              class="btn btn-success btn-spacing"
+              type="submit"
+              [disabled]="workshopForm.invalid"
+            >
+              {{ isEdit ? "Actualizar Inscripción" : "Crear Inscripción" }}
+            </button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>

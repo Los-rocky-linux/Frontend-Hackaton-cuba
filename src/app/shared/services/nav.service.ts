@@ -122,6 +122,14 @@ export class NavService implements OnDestroy {
       headTitle1: "Choose tema",
     },
     {
+      title: "Workshop Registration",
+      path: "/workshop",
+      icon: "email",
+      type: "link",
+      badgeType: "light-secondary",
+      active: false,
+    },
+    {
       title: "Modality",
       path: "/modality",
       icon: "email",
@@ -140,17 +148,17 @@ export class NavService implements OnDestroy {
       badgeType: "light-secondary",
       active: false,
     },
-    {
-      headTitle1: "Create Development Types",
-    },
-    {
-      title: "Development Type",
-      path: "/development-type",
-      icon: "board",
-      type: "link",
-      badgeType: "light-secondary",
-      active: false,
-    },
+    // {
+    //   headTitle1: "Create Development Types",
+    // },
+    // {
+    //   title: "Development Type",
+    //   path: "/development-type",
+    //   icon: "board",
+    //   type: "link",
+    //   badgeType: "light-secondary",
+    //   active: false,
+    // },
     // {
     //   title: 'about us',
     //   path:'/about',
@@ -182,9 +190,17 @@ export class NavService implements OnDestroy {
       badgeType: "light-secondary",
       active: false,
     },
+    {
+      title: "Management court",
+      path: "/management-court",
+      icon: "user",
+      type: "link",
+      badgeType: "light-secondary",
+      active: false,
+    },
     // utils que no se usaran pero yo (byron) ocupo para testear más rápido. No borrar
     {
-      headTitle1: "Utils for test",
+      headTitle1: "System Administration",
     },
     {
       title: "Users",

@@ -9,6 +9,7 @@ import { BootstrapModalConfig } from '../../../../../core/interfaces/IBootstrapM
 import { BootstrapModalService } from '../../../../../core/services/boostrap-modal.service';
 import { FormModalidadComponent } from '../../forms/form-modalidad/form-modalidad.component';
 import { ViewEnrollmentComponent } from '../../forms/view-enrollment/view-enrollment.component';
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-table-modalidad',
@@ -50,6 +51,7 @@ export class TableModalidadComponent implements OnInit, OnDestroy {
           partnerName: enrollment.partner
             ? `${enrollment.partner.name} ${enrollment.partner.lastName}`
             : 'Sin compañero',
+          isGroupCreated: enrollment.isGroupCreated,
         }));
         this.collectionSize = response.totalCount;
         this.isLoading = false;
@@ -147,5 +149,66 @@ export class TableModalidadComponent implements OnInit, OnDestroy {
 
   trackByEnrollmentId(index: number, enrollment: EnrollmentDisplay): string {
     return enrollment._id;
+  }
+
+  getGroupStatusText(enrollment: EnrollmentDisplay): string {
+    if (enrollment.developmentTypeName === 'Individual') {
+      return 'Individual';
+    } else if (enrollment.isGroupCreated) {
+      return 'Grupo Formado';
+    } else {
+      return 'Pendiente';
+    }
+  }
+
+  getGroupStatusClass(enrollment: EnrollmentDisplay): string {
+    if (enrollment.developmentTypeName === 'Individual') {
+      return 'group-individual';
+    } else if (enrollment.isGroupCreated) {
+      return 'group-formed';
+    } else {
+      return 'group-pending';
+    }
+  }
+
+  confirmDeleteEnrollment(enrollment: EnrollmentDisplay): void {
+    Swal.fire({
+      title: '¿Estás seguro?',
+      text: 'Esta acción eliminará la inscripción. ¿Deseas continuar?',
+      icon: 'warning',
+      showCancelButton: true,
+      confirmButtonColor: '#d33',
+      cancelButtonColor: '#3085d6',
+      confirmButtonText: 'Sí, eliminar',
+      cancelButtonText: 'Cancelar',
+    }).then((result) => {
+      if (result.isConfirmed) {
+        this.deleteEnrollment(enrollment._id);
+      }
+    });
+  }
+
+  deleteEnrollment(enrollmentId: string): void {
+    this.enrollmentService.deleteEnrollment(enrollmentId).subscribe({
+      next: () => {
+        Swal.fire(
+          'Eliminado',
+          'La inscripción ha sido eliminada correctamente.',
+          'success'
+        );
+        this.reloadTable();
+      },
+      error: (error) => {
+        console.error(
+          '[TableModalidadComponent] Error while deleting enrollment:',
+          error
+        );
+        Swal.fire(
+          'Error',
+          error.error.message || 'Ocurrió un error al eliminar la inscripción.',
+          'error'
+        );
+      },
+    });
   }
 }

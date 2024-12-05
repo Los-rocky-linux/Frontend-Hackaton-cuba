@@ -31,8 +31,14 @@
   color: var(--primary-button-text-color) !important;
   border: none;
 }
-
+//tamaNo de los botones de acciones
 .btn-light {
+  padding: 0.375rem 0.9rem;
+}
+.btn-danger {
+  padding: 0.375rem 0.9rem;
+}
+.btn-success {
   padding: 0.375rem 0.9rem;
 }
 
@@ -52,7 +58,7 @@
   background-color: #da3bda;
 }
 
-//posicion del filtro y de ñps modales de la tabla
+//posicion del filtro y de los modales de la tabla
 
 .card-header {
   display: flex;

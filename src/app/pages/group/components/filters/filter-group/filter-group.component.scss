@@ -1,21 +1,29 @@
 /* filter-group.component.scss */
 .filter-container {
-    padding: 15px;
-    background-color: #f8f9fa;
-    border-radius: 5px;
-  
-    .row {
-      margin-bottom: 0;
-  
-      .col-md-4 {
-        margin-bottom: 15px;
-      }
-    }
-  
-    .button-group {
-      button {
-        min-width: 100px;
-      }
+  padding: 15px;
+  background-color: #f8f9fa;
+  border-radius: 5px;
+
+  .row {
+    margin-bottom: 0;
+
+    .col-md-4 {
+      margin-bottom: 15px;
     }
   }
-  
+  .button-group {
+    button {
+      min-width: 100px;
+    }
+  }
+}
+//diseño del boton de restablecer
+
+.btn-head,
+.btn-restore {
+  background-color: var(--primary-button-color);
+  color: var(--primary-button-text-color);
+}
+.btn-restore {
+  background-color: var(--disabled-button-text-color);
+}
