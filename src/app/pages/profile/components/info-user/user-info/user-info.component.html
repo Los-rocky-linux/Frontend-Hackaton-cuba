@@ -1,0 +1,45 @@
+<div *ngIf="currentUser" class="container mt-4">
+  <div class="card shadow-sm">
+    <div class="card-header bg-primary text-white">
+      <h4 class="mb-0">Información del Usuario</h4>
+    </div>
+    <div class="card-body">
+      <p class="mb-2">
+        <strong>Nombre:</strong> {{ currentUser.name }}
+        {{ currentUser.lastName }}
+      </p>
+      <p class="mb-2"><strong>Email:</strong> {{ currentUser.email }}</p>
+      <p class="mb-2"><strong>Rol:</strong> {{ currentUser.rol.roleName }}</p>
+      <p class="mb-2">
+        <strong>Descripción de Rol: </strong>{{ currentUser.rol.description }}
+      </p>
+
+      <div
+        *ngIf="currentUser.permissions && currentUser.permissions.length > 0"
+      >
+        <p class="mb-2"><strong>Permisos:</strong></p>
+        <ul class="list-group">
+          <li
+            class="list-group-item list-group-item-action"
+            *ngFor="let permission of currentUser.permissions"
+          >
+            {{ permission }}
+          </li>
+        </ul>
+      </div>
+      <div
+        *ngIf="!currentUser.permissions || currentUser.permissions.length === 0"
+      >
+        <p class="text-muted">
+          <strong>Permisos:</strong> No se encontraron permisos.
+        </p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div *ngIf="!currentUser" class="container mt-4">
+  <div class="alert alert-warning text-center" role="alert">
+    <strong>No hay usuario logueado.</strong>
+  </div>
+</div>

@@ -1,0 +1,20 @@
+.card {
+  border-radius: 0.5rem;
+}
+
+.card-header {
+  font-weight: bold;
+}
+
+.list-group-item {
+  border: none;
+}
+.list-group-item {
+  background-color: var(--bs-light) !important;
+  color: var(--bs-dark) !important;
+}
+
+body.dark-mode .list-group-item {
+  background-color: var(--bs-dark) !important;
+  color: var(--bs-light) !important;
+}

@@ -1,149 +1,177 @@
-<!-- view-group.component.html -->
 <div>
-    <div class="modal-body" *ngIf="groupData; else loading">
-      <div class="row">
-        <div class="col-md-4" *ngIf="memberEnrollments[0]">
-          <h5>Información del Estudiante 1</h5>
-          <table class="table table-bordered table-hover">
-            <tbody>
-              <tr>
-                <td><strong>ID:</strong></td>
-                <td>{{ memberEnrollments[0].member._id }}</td>
-              </tr>
-              <tr>
-                <td><strong>Nombre:</strong></td>
-                <td>{{ memberEnrollments[0].member.name }}</td>
-              </tr>
-              <tr>
-                <td><strong>Apellido:</strong></td>
-                <td>{{ memberEnrollments[0].member.lastName }}</td>
-              </tr>
-              <tr>
-                <td><strong>Email:</strong></td>
-                <td>{{ memberEnrollments[0].member.email }}</td>
-              </tr>
-              <tr>
-                <td><strong>Título del Tema:</strong></td>
-                <td>{{ memberEnrollments[0].enrollment.topicTitle || 'N/A' }}</td>
-              </tr>
-              <tr>
-                <td><strong>Modalidad:</strong></td>
-                <td>{{ memberEnrollments[0].enrollment.modality?.name || 'N/A' }}</td>
-              </tr>
-              <tr>
-                <td><strong>Descripción del Problema:</strong></td>
-                <td>{{ memberEnrollments[0].enrollment.problemDescription || 'N/A' }}</td>
-              </tr>
-              <tr>
-                <td><strong>Mecanismo de Desarrollo:</strong></td>
-                <td>{{ memberEnrollments[0].enrollment.developmentMechanism?.name || 'N/A' }}</td>
-              </tr>
-              <tr>
-                <td><strong>Partner:</strong></td>
-                <td>{{ memberEnrollments[0].enrollment.partner || 'N/A' }}</td>
-              </tr>
-              <tr>
-                <td><strong>Tutores Preferidos:</strong></td>
-                <td>{{ formatTutors(memberEnrollments[0].enrollment.preferredTutors) }}</td>
-              </tr>
-            </tbody>
-          </table>
-        </div>
-  
-        <div class="col-md-4">
-          <h5>Detalles del Grupo</h5>
-          <table class="table table-bordered table-hover">
-            <tbody>
-              <tr>
-                <td><strong>Grupo ID:</strong></td>
-                <td>{{ groupData._id }}</td>
-              </tr>
-              <tr>
-                <td><strong>Miembros:</strong></td>
-                <td>{{ formatMembers(groupData.members || []) }}</td>
-              </tr>
-              <tr>
-                <td><strong>Modalidad:</strong></td>
-                <td>{{ groupData.modalityName }}</td>
-              </tr>
-              <tr>
-                <td><strong>Mecanismo de Desarrollo:</strong></td>
-                <td>{{ groupData.developmentMechanismName }}</td>
-              </tr>
-              <tr>
-                <td><strong>Título del Tema:</strong></td>
-                <td>{{ groupData.topicTitle || 'N/A' }}</td>
-              </tr>
-              <tr>
-                <td><strong>Tutores Preferidos:</strong></td>
-                <td>{{ groupData.preferredTutorsNames }}</td>
-              </tr>
-              <tr>
-                <td><strong>Creado En:</strong></td>
-                <td>{{ groupData.createdAt | date: 'short' }}</td>
-              </tr>
-            </tbody>
-          </table>
-        </div>
-  
-        <div class="col-md-4" *ngIf="memberEnrollments[1]">
-          <h5>Información del Estudiante 2</h5>
-          <table class="table table-bordered table-hover">
-            <tbody>
-              <tr>
-                <td><strong>ID:</strong></td>
-                <td>{{ memberEnrollments[1].member._id }}</td>
-              </tr>
-              <tr>
-                <td><strong>Nombre:</strong></td>
-                <td>{{ memberEnrollments[1].member.name }}</td>
-              </tr>
-              <tr>
-                <td><strong>Apellido:</strong></td>
-                <td>{{ memberEnrollments[1].member.lastName }}</td>
-              </tr>
-              <tr>
-                <td><strong>Email:</strong></td>
-                <td>{{ memberEnrollments[1].member.email }}</td>
-              </tr>
-              <tr>
-                <td><strong>Título del Tema:</strong></td>
-                <td>{{ memberEnrollments[1].enrollment.topicTitle || 'N/A' }}</td>
-              </tr>
-              <tr>
-                <td><strong>Modalidad:</strong></td>
-                <td>{{ memberEnrollments[1].enrollment.modality?.name || 'N/A' }}</td>
-              </tr>
-              <tr>
-                <td><strong>Descripción del Problema:</strong></td>
-                <td>{{ memberEnrollments[1].enrollment.problemDescription || 'N/A' }}</td>
-              </tr>
-              <tr>
-                <td><strong>Mecanismo de Desarrollo:</strong></td>
-                <td>{{ memberEnrollments[1].enrollment.developmentMechanism?.name || 'N/A' }}</td>
-              </tr>
-              <tr>
-                <td><strong>Partner:</strong></td>
-                <td>{{ memberEnrollments[1].enrollment.partner || 'N/A' }}</td>
-              </tr>
-              <tr>
-                <td><strong>Tutores Preferidos:</strong></td>
-                <td>{{ formatTutors(memberEnrollments[1].enrollment.preferredTutors) }}</td>
-              </tr>
-            </tbody>
-          </table>
-        </div>
+  <div class="modal-body" *ngIf="groupData; else loading">
+    <div class="row">
+      <div class="col-md-4" *ngIf="memberEnrollments[0]">
+        <h5>Información del Estudiante 1</h5>
+        <table class="table table-bordered table-hover">
+          <tbody>
+            <tr>
+              <td><strong>ID:</strong></td>
+              <td>{{ memberEnrollments[0].member._id }}</td>
+            </tr>
+            <tr>
+              <td><strong>Nombre:</strong></td>
+              <td>{{ memberEnrollments[0].member.name }}</td>
+            </tr>
+            <tr>
+              <td><strong>Apellido:</strong></td>
+              <td>{{ memberEnrollments[0].member.lastName }}</td>
+            </tr>
+            <tr>
+              <td><strong>Email:</strong></td>
+              <td>{{ memberEnrollments[0].member.email }}</td>
+            </tr>
+            <tr>
+              <td><strong>Título del Tema:</strong></td>
+              <td>{{ memberEnrollments[0].enrollment.topicTitle || "N/A" }}</td>
+            </tr>
+            <tr>
+              <td><strong>Modalidad:</strong></td>
+              <td>
+                {{ memberEnrollments[0].enrollment.modality?.name || "N/A" }}
+              </td>
+            </tr>
+            <tr>
+              <td><strong>Descripción del Problema:</strong></td>
+              <td>
+                {{
+                  memberEnrollments[0].enrollment.problemDescription || "N/A"
+                }}
+              </td>
+            </tr>
+            <tr>
+              <td><strong>Mecanismo de Desarrollo:</strong></td>
+              <td>
+                {{
+                  memberEnrollments[0].enrollment.developmentMechanism?.name ||
+                    "N/A"
+                }}
+              </td>
+            </tr>
+            <tr>
+              <td><strong>Partner:</strong></td>
+              <td>{{ memberEnrollments[0].enrollment.partner || "N/A" }}</td>
+            </tr>
+            <tr>
+              <td><strong>Tutores Preferidos:</strong></td>
+              <td>
+                {{
+                  formatTutors(memberEnrollments[0].enrollment.preferredTutors)
+                }}
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div class="col-md-4">
+        <h5>Detalles del Grupo</h5>
+        <table class="table table-bordered table-hover">
+          <tbody>
+            <tr>
+              <td><strong>Grupo ID:</strong></td>
+              <td>{{ groupData._id }}</td>
+            </tr>
+            <tr>
+              <td><strong>Miembros:</strong></td>
+              <td>{{ formatMembers(groupData.members || []) }}</td>
+            </tr>
+            <tr>
+              <td><strong>Modalidad:</strong></td>
+              <td>{{ groupData.modalityName }}</td>
+            </tr>
+            <tr>
+              <td><strong>Mecanismo de Desarrollo:</strong></td>
+              <td>{{ groupData.developmentMechanismName }}</td>
+            </tr>
+            <tr>
+              <td><strong>Título del Tema:</strong></td>
+              <td>{{ groupData.topicTitle || "N/A" }}</td>
+            </tr>
+            <tr>
+              <td><strong>Tutores Preferidos:</strong></td>
+              <td>{{ groupData.preferredTutorsNames }}</td>
+            </tr>
+            <tr>
+              <td><strong>Creado En:</strong></td>
+              <td>{{ groupData.createdAt | date : "short" }}</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div class="col-md-4" *ngIf="memberEnrollments[1]">
+        <h5>Información del Estudiante 2</h5>
+        <table class="table table-bordered table-hover">
+          <tbody>
+            <tr>
+              <td><strong>ID:</strong></td>
+              <td>{{ memberEnrollments[1].member._id }}</td>
+            </tr>
+            <tr>
+              <td><strong>Nombre:</strong></td>
+              <td>{{ memberEnrollments[1].member.name }}</td>
+            </tr>
+            <tr>
+              <td><strong>Apellido:</strong></td>
+              <td>{{ memberEnrollments[1].member.lastName }}</td>
+            </tr>
+            <tr>
+              <td><strong>Email:</strong></td>
+              <td>{{ memberEnrollments[1].member.email }}</td>
+            </tr>
+            <tr>
+              <td><strong>Título del Tema:</strong></td>
+              <td>{{ memberEnrollments[1].enrollment.topicTitle || "N/A" }}</td>
+            </tr>
+            <tr>
+              <td><strong>Modalidad:</strong></td>
+              <td>
+                {{ memberEnrollments[1].enrollment.modality?.name || "N/A" }}
+              </td>
+            </tr>
+            <tr>
+              <td><strong>Descripción del Problema:</strong></td>
+              <td>
+                {{
+                  memberEnrollments[1].enrollment.problemDescription || "N/A"
+                }}
+              </td>
+            </tr>
+            <tr>
+              <td><strong>Mecanismo de Desarrollo:</strong></td>
+              <td>
+                {{
+                  memberEnrollments[1].enrollment.developmentMechanism?.name ||
+                    "N/A"
+                }}
+              </td>
+            </tr>
+            <tr>
+              <td><strong>Partner:</strong></td>
+              <td>{{ memberEnrollments[1].enrollment.partner || "N/A" }}</td>
+            </tr>
+            <tr>
+              <td><strong>Tutores Preferidos:</strong></td>
+              <td>
+                {{
+                  formatTutors(memberEnrollments[1].enrollment.preferredTutors)
+                }}
+              </td>
+            </tr>
+          </tbody>
+        </table>
       </div>
     </div>
-  
-    <ng-template #loading>
-      <p>Cargando datos del grupo...</p>
-    </ng-template>
-  
-    <div class="modal-footer justify-content-end">
-      <button type="button" class="btn btn-danger me-2" (click)="closeModal()">
-        Cerrar
-      </button>
-    </div>
   </div>
-  
+
+  <ng-template #loading>
+    <p>Cargando datos del grupo...</p>
+  </ng-template>
+
+  <div class="modal-footer justify-content-end">
+    <button type="button" class="btn btn-danger me-2" (click)="closeModal()">
+      Cerrar
+    </button>
+  </div>
+</div>

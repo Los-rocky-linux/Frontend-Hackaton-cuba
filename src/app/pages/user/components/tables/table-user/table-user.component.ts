@@ -64,7 +64,7 @@ export class TableUserComponent implements OnInit {
 
     modalRef.componentInstance.save.subscribe((result: User) => {
       if (user) {
-        this.userService.updateUser(user._id, result).subscribe(() => {
+        this.userService.updateUser(user.id, result).subscribe(() => {
           this.loadUsers();
           Swal.fire(
             "¡Actualizado!",

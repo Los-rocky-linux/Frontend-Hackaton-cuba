@@ -4,7 +4,6 @@
       <div class="card">
         <form [formGroup]="enrollmentForm" (ngSubmit)="onSubmit()">
           <div class="row mb-4">
-            <!-- Título del Tema -->
             <div class="col-sm-6 mb-3">
               <label for="topicTitle" class="col-form-label"
                 >Título del Tema</label
@@ -27,7 +26,6 @@
               </div>
             </div>
 
-            <!-- Modalidad -->
             <div class="col-sm-6 mb-3">
               <label for="modality" class="col-form-label">Modalidad</label>
               <ng-select
@@ -50,7 +48,6 @@
               </div>
             </div>
 
-            <!-- Descripción del Problema -->
             <div class="col-12 mb-3">
               <label for="problemDescription" class="col-form-label"
                 >Descripción del Problema</label
@@ -73,7 +70,6 @@
               </div>
             </div>
 
-            <!-- Tipo de Desarrollo -->
             <div class="col-sm-6 mb-3">
               <label for="developmentType" class="col-form-label"
                 >Tipo de Desarrollo</label
@@ -101,7 +97,6 @@
               </div>
             </div>
 
-            <!-- Selección de Compañero (solo si es Grupal) -->
             <div class="col-sm-6 mb-3" *ngIf="showPartnerSelection">
               <label for="partner" class="col-form-label"
                 >Seleccionar Compañero</label
@@ -126,7 +121,6 @@
               </div>
             </div>
 
-            <!-- Tutores Preferidos -->
             <div class="col-sm-12 mb-3">
               <label for="preferredTutors" class="col-form-label"
                 >Tutores Preferidos</label
