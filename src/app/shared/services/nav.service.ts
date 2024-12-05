@@ -122,6 +122,14 @@ export class NavService implements OnDestroy {
       headTitle1: "Choose tema",
     },
     {
+      title: "Workshop Registration",
+      path: "/workshop",
+      icon: "email",
+      type: "link",
+      badgeType: "light-secondary",
+      active: false,
+    },
+    {
       title: "Modality",
       path: "/modality",
       icon: "email",
