@@ -1,0 +1,45 @@
+<div class="row">
+  <div class="col-sm-12 col-xl-12">
+    <div class="card" style="margin-bottom: 0px">
+      <div class="card-header d-flex justify-content-between align-items-center">
+        <h5 class="card-title">Filtro De Búsqueda</h5>
+        <button class="btn btn-link" type="button" (click)="toggleExpand()">
+          <i class="fa" [ngClass]="{ 'fa-chevron-up': isExpanded, 'fa-chevron-down': !isExpanded }"></i>
+        </button>
+      </div>
+
+      <div id="filterCardContent" [ngbCollapse]="!isExpanded">
+        <div class="card-body">
+          <form [formGroup]="form" (ngSubmit)="onSubmit()">
+            <div class="row mb-3">
+              <div class="col-md-4">
+                <label for="assignedCourt" class="form-label">Tribunal Asignado</label>
+                <input type="text" id="assignedCourt" class="form-control" formControlName="assignedCourt" />
+              </div>
+              <div class="col-md-4">
+                <label for="assignedTutor" class="form-label">Tutor Asignado</label>
+                <input type="text" id="assignedTutor" class="form-control" formControlName="assignedTutor" />
+              </div>
+              <div class="col-md-4">
+                <label for="enrollment" class="form-label">Inscripción</label>
+                <input type="text" id="enrollment" class="form-control" formControlName="enrollment" />
+              </div>
+              <div class="col-md-4">
+                <label for="statusSchedule" class="form-label">Estado</label>
+                <select id="statusSchedule" class="form-control" formControlName="statusSchedule">
+                  <option value="">Todos</option>
+                  <option value="true">Activo</option>
+                  <option value="false">Inactivo</option>
+                </select>
+              </div>
+            </div>
+            <div class="text-end">
+              <button type="button" class="btn btn-secondary me-1" (click)="onReset()">Resetear</button>
+              <button type="submit" class="btn btn-primary">Buscar</button>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

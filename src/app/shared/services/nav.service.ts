@@ -198,6 +198,14 @@ export class NavService implements OnDestroy {
       badgeType: "light-secondary",
       active: false,
     },
+    {
+      title: "Management schedule",
+      path: "/management-schedule",
+      icon: "user",
+      type: "link",
+      badgeType: "light-secondary",
+      active: false,
+    },
     // utils que no se usaran pero yo (byron) ocupo para testear más rápido. No borrar
     {
       headTitle1: "System Administration",

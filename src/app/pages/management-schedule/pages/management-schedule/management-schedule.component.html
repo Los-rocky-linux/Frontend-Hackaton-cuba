@@ -1,0 +1,22 @@
+<app-breadcrumb
+  [title]="'Gestión de Horarios'"
+  [items]="['Inicio', 'Gestión de Horarios']"
+  [active_item]="'Horarios'"
+></app-breadcrumb>
+<div class="container-fluid basic_table">
+  <div class="row">
+    <div class="col-xxl-12 col-xl-12 box-cSol-12">
+      <div class="col-sm-12">
+        <div class="row mt-3">
+          <div class="col-12">
+            <div class="mb-sm-0">
+              <app-management-schedule-filter></app-management-schedule-filter>
+              <br />
+            </div>
+          </div>
+        </div>
+        <app-management-schedule-table></app-management-schedule-table>
+      </div>
+    </div>
+  </div>
+</div>
