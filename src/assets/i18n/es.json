@@ -1,15 +1,19 @@
 {
+    "General": "General",
     "Dashboard": "Tablero",
-    "Applications": "Aplicaciones",
-    "Accounting": "Contabilidad",
+    "Separator": "Separador",
     "example": "Ejemplo",
+    "Choose tema": "Elegir Tema",
+    "Workshop Registration": "Registro de Taller",
     "Modality": "Modalidad",
+    "See Groups": "Ver Grupos",
     "Groups": "Grupos",
-    "Users": "Usuarios",
-    "Comision academic": "Comisión académica",
-    "Management topic": "Gestión de tema",
-    "Management tutor": "Gestión de tutor",
-    "ModalityModulo": {
-        "f":""
-    }
-}
+    "Comision academic": "Comisión Académica",
+    "Management topic": "Gestión de Tema",
+    "Management tutor": "Gestión de Tutor",
+    "Management court": "Gestión de Cortes",
+    "Management schedule": "Gestión de Horarios",
+    "System Administration": "Administración del Sistema",
+    "Users": "Usuarios"
+  }
+  

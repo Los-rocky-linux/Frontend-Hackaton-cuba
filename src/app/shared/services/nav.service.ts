@@ -118,7 +118,7 @@ export class NavService implements OnDestroy {
     //   ],
     // },
     {
-      headTitle1: "Separador",
+      headTitle1: "Separator",
     },
     {
       title: "example",

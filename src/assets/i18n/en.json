@@ -1,14 +1,18 @@
 {
+  "General": "General",
   "Dashboard": "Dashboard",
-  "Applications": "Applications",
-  "Accounting": "Accounting",
-  "example": "example",
+  "Separator": "Separator",
+  "example": "Example",
+  "Choose tema": "Choose Tema",
+  "Workshop Registration": "Workshop Registration",
   "Modality": "Modality",
+  "See Groups": "See Groups",
   "Groups": "Groups",
-  "Comision academic": "Comision academic",
-  "Management topic": "Management topic",
-  "Management tutor": "Management tutor",
-  "ModalityModulo": {
-    "f": ""
-  }
+  "Comision academic": "Comision Academic",
+  "Management topic": "Management Topic",
+  "Management tutor": "Management Tutor",
+  "Management court": "Management Court",
+  "Management schedule": "Management Schedule",
+  "System Administration": "System Administration",
+  "Users": "Users"
 }
