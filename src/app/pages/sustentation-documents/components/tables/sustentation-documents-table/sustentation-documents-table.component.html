@@ -1,0 +1,80 @@
+<div class="container-fluid">
+  <div class="row">
+    <div class="card">
+      <div class="card-header">
+        <div class="text-end">
+          <button
+            class="btn btn-sm btn-refresh me-3"
+            [disabled]="isLoading"
+            ngbTooltip="Recargar Tabla"
+            tooltipClass="custom-tooltip"
+            (click)="reloadTable()"
+          >
+            <i class="fas fa-sync-alt"></i> Recargar
+          </button>
+          <button
+            class="btn btn-sm btn-head btn-head-table me-3"
+            [disabled]="isLoading"
+            (click)="openUploadModal()"
+          >
+            <i class="fa-solid fa-upload"></i> Subir Documentos
+          </button>
+        </div>
+      </div>
+
+      <div class="card-body custom-datatable noscroll">
+        <div class="table-responsive">
+          <table class="table table-hover table-responsive uppercase-table">
+            <thead>
+            <tr>
+              <th>Acciones</th>
+              <th>Nombre del Documento</th>
+            </tr>
+            </thead>
+            <tbody *ngIf="isLoading">
+            <tr>
+              <td colspan="2" class="text-center">
+                <div class="loader-box">
+                  <div class="loader-16"></div>
+                </div>
+              </td>
+            </tr>
+            </tbody>
+            <tbody *ngIf="!isLoading && tutorDocumentList.length > 0">
+            <tr *ngFor="let item of tutorDocumentList">
+              <td>
+                <div class="btn-group">
+                  <button
+                    class="btn btn-sm btn-danger mt-2"
+                    ngbTooltip="Eliminar Documento"
+                    tooltipClass="custom-tooltip"
+                    (click)="deleteDocument(item)"
+                  >
+                    <i class="fa-solid fa-trash"></i>
+                  </button>
+                  <button
+                    class="btn btn-sm btn-success mt-2"
+                    ngbTooltip="Editar Documento"
+                    tooltipClass="custom-tooltip"
+                    (click)="editDocument(item)"
+                  >
+                    <i class="fa-solid fa-pen-to-square"></i>
+                  </button>
+                </div>
+              </td>
+              <td>{{ item.name }}</td>
+            </tr>
+            </tbody>
+            <tbody *ngIf="!isLoading && tutorDocumentList.length === 0">
+            <tr>
+              <td colspan="2" class="text-center">
+                No hay documentos disponibles.
+              </td>
+            </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
