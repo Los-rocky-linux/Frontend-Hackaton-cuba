@@ -1,0 +1,37 @@
+<div class="modal-header">
+  <h5 class="modal-title">Detalles de la Sustentación</h5>
+  <button type="button" class="btn-close" aria-label="Close" (click)="activeModal.dismiss('Cross click')"></button>
+</div>
+<div class="modal-body">
+  <div class="mb-4">
+    <label class="form-label">Fecha de Sustentación</label>
+    <p>{{ sustentation?.date | date: 'longDate' }}</p>
+  </div>
+  <div class="mb-4">
+    <label class="form-label">Requisitos</label>
+    <ul>
+      <li *ngFor="let requirement of sustentation?.requirements">
+        {{ requirement }}
+      </li>
+    </ul>
+  </div>
+  <div class="mb-4">
+    <label class="form-label">Documentos Adicionales</label>
+    <ul>
+      <li *ngFor="let document of sustentation?.additionalDocuments">
+        <a [href]="document" target="_blank">{{ document }}</a>
+      </li>
+    </ul>
+  </div>
+  <div class="mb-4">
+    <label class="form-label">Estado</label>
+    <p>{{ sustentation?.status | titlecase }}</p>
+  </div>
+  <div class="mb-4">
+    <label class="form-label">Comentarios</label>
+    <p>{{ sustentation?.remarks || 'Sin comentarios' }}</p>
+  </div>
+</div>
+<div class="modal-footer">
+  <button type="button" class="btn btn-secondary" (click)="activeModal.dismiss('Close click')">Cerrar</button>
+</div>

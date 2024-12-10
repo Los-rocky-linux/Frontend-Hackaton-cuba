@@ -1,0 +1,79 @@
+<div class="row">
+  <div class="col-sm-12 col-xl-12">
+    <div class="card" style="margin-bottom: 0px">
+      <div class="card-header d-flex justify-content-between align-items-center">
+        <h5 class="card-title">Filtro de Búsqueda de Sustentaciones</h5>
+        <button
+          class="btn btn-link"
+          type="button"
+          (click)="toggleExpand()"
+        >
+          <i
+            class="fa"
+            [ngClass]="{
+              'fa-chevron-up': isExpanded,
+              'fa-chevron-down': !isExpanded
+            }"
+          ></i>
+        </button>
+      </div>
+
+      <div id="filterCardContent" [ngbCollapse]="!isExpanded">
+        <div class="card-body">
+          <form [formGroup]="form" (ngSubmit)="onSubmit()">
+            <div class="row mb-3">
+              <div class="col-sm-3">
+                <label for="filterDate" class="col-form-label">Fecha</label>
+                <input
+                  type="date"
+                  class="form-control"
+                  id="filterDate"
+                  formControlName="date"
+                  placeholder="Filtrar por fecha">
+              </div>
+              <div class="col-sm-3">
+                <label for="filterRequirements" class="col-form-label">Requisito</label>
+                <input
+                  type="text"
+                  class="form-control"
+                  id="filterRequirements"
+                  formControlName="requirements"
+                  placeholder="Filtrar por requisito">
+              </div>
+              <div class="col-sm-3">
+                <label for="filterStatus" class="col-form-label">Estado</label>
+                <select
+                  class="form-control"
+                  id="filterStatus"
+                  formControlName="status">
+                  <option value="">Todos</option>
+                  <option value="Pending">Pendiente</option>
+                  <option value="Approved">Aprobado</option>
+                  <option value="Rejected">Rechazado</option>
+                </select>
+              </div>
+              <div class="col-sm-3">
+                <label for="filterRemarks" class="col-form-label">Comentarios</label>
+                <input
+                  type="text"
+                  class="form-control"
+                  id="filterRemarks"
+                  formControlName="remarks"
+                  placeholder="Filtrar por comentarios">
+              </div>
+            </div>
+            <div class="text-end">
+              <button
+                type="button"
+                class="btn btn-sm btn-secondary me-1"
+                (click)="onReset()">Resetear</button>
+              <button
+                type="submit"
+                class="btn btn-sm btn-primary">Filtrar</button>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
