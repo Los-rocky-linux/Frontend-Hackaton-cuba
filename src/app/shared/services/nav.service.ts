@@ -103,17 +103,17 @@ export class NavService implements OnDestroy {
       active: true,
       path: "/dashboard/default",
     },
-    {
-      headTitle1: "Separator",
-    },
-    {
-      title: "example",
-      path: "/ejemplo",
-      icon: "learning",
-      type: "link",
-      badgeType: "light-secondary",
-      active: false,
-    },
+    // {
+    //   headTitle1: "Separator",
+    // },
+    // {
+    //   title: "example",
+    //   path: "/ejemplo",
+    //   icon: "learning",
+    //   type: "link",
+    //   badgeType: "light-secondary",
+    //   active: false,
+    // },
     {
       headTitle1: "Choose tema",
       roles: ["Administrador", "Estudiante"],
@@ -128,7 +128,7 @@ export class NavService implements OnDestroy {
       roles: ["Administrador", "Estudiante"],
     },
     {
-      title: "Modality",
+      title: "Subject registration",
       path: "/modality",
       icon: "email",
       type: "link",
@@ -147,16 +147,16 @@ export class NavService implements OnDestroy {
     },
     {
       headTitle1: "See Groups",
-      roles: ["Administrador", "Estudiante"],
+      roles: ["Administrador", "Tutor"],
     },
     {
-      title: "Groups",
+      title: "List of registrations",
       path: "/group",
       icon: "search",
       type: "link",
       badgeType: "light-secondary",
       active: false,
-      roles: ["Administrador", "Estudiante"],
+      roles: ["Administrador", "Tutor"],
     },
     {
       headTitle1: "Comision academic",
@@ -165,7 +165,7 @@ export class NavService implements OnDestroy {
     {
       title: "Management topic",
       path: "/management-topic",
-      icon: "user",
+      icon: "gallery",
       type: "link",
       badgeType: "light-secondary",
       active: false,
@@ -174,7 +174,7 @@ export class NavService implements OnDestroy {
     {
       title: "Management tutor",
       path: "/management-tutor",
-      icon: "user",
+      icon: "learning",
       type: "link",
       badgeType: "light-secondary",
       active: false,
@@ -183,7 +183,7 @@ export class NavService implements OnDestroy {
     {
       title: "Management court",
       path: "/management-court",
-      icon: "user",
+      icon: "board",
       type: "link",
       badgeType: "light-secondary",
       active: false,
@@ -192,7 +192,7 @@ export class NavService implements OnDestroy {
     {
       title: "Management schedule",
       path: "/management-schedule",
-      icon: "user",
+      icon: "file",
       type: "link",
       badgeType: "light-secondary",
       active: false,
