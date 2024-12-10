@@ -30,20 +30,6 @@ export const content: Routes = [
       ),
   },
   {
-    path: "sustentation-documents",
-    loadChildren: () =>
-      import("../../pages/sustentation-documents/sustentation-documents.module").then(
-        (m) => m.SustentationDocumentsModule
-      ),
-  },
-  {
-    path: "sustentation",
-    loadChildren: () =>
-      import("../../pages/sustentation/sustentation.module").then(
-        (m) => m.SustentationModule
-      ),
-  },
-  {
     path: "user",
     loadChildren: () =>
       import("../../pages/user/user.module").then((m) => m.UserModule),
