@@ -104,7 +104,7 @@ export class NavService implements OnDestroy {
       path: "/dashboard/default",
     },
     {
-      headTitle1: "Separador",
+      headTitle1: "Separator",
     },
     {
       title: "example",
