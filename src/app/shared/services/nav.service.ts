@@ -3,7 +3,7 @@ import { Subject, BehaviorSubject, fromEvent } from "rxjs";
 import { takeUntil, debounceTime } from "rxjs/operators";
 import { Router } from "@angular/router";
 
-// Menu
+// Menu Interface
 export interface Menu {
   headTitle1?: string;
   headTitle2?: string;
@@ -37,6 +37,7 @@ export class NavService implements OnDestroy {
       return true;
     });
   }
+
   // Search Box
   public search: boolean = false;
 
@@ -74,7 +75,7 @@ export class NavService implements OnDestroy {
       });
     if (window.innerWidth < 991) {
       // Detect Route change sidebar close
-      this.router.events.subscribe((event) => {
+      this.router.events.subscribe(() => {
         this.collapseSidebar = true;
         this.megaMenu = false;
         this.levelMenu = false;
@@ -83,7 +84,6 @@ export class NavService implements OnDestroy {
   }
 
   ngOnDestroy() {
-    // this.unsubscriber.next();
     this.unsubscriber.complete();
   }
 
@@ -103,20 +103,6 @@ export class NavService implements OnDestroy {
       active: true,
       path: "/dashboard/default",
     },
-    // {
-    //   headTitle1: 'Testeo',
-    // },
-    // {
-    //   title: 'Accounting',
-    //   icon: 'charts',
-    //   type: 'sub',
-    //   badgeType: 'light-secondary',
-    //   active: false,
-    //   children: [
-    //     { path: '/accounting/billing', title: 'Billing', type: 'link' },
-    //     { path: '/accounting/sri', title: 'Sri', type: 'link' },
-    //   ],
-    // },
     // {
     //   headTitle1: "Separator",
     // },
@@ -151,6 +137,15 @@ export class NavService implements OnDestroy {
       roles: ["Administrador", "Estudiante"],
     },
     {
+      title: "Documentos",
+      path: "/sustentation-documents",
+      icon: "email",
+      type: "link",
+      badgeType: "light-secondary",
+      active: false,
+      roles: ["Administrador", "Documentos"],
+    },
+    {
       headTitle1: "See Groups",
       roles: ["Administrador", "Tutor"],
     },
@@ -163,32 +158,8 @@ export class NavService implements OnDestroy {
       active: false,
       roles: ["Administrador", "Tutor"],
     },
-    // {
-    //   headTitle1: "Create Development Types",
-    // },
-    // {
-    //   title: "Development Type",
-    //   path: "/development-type",
-    //   icon: "board",
-    //   type: "link",
-    //   badgeType: "light-secondary",
-    //   active: false,
-    // },
-    // {
-    //   title: 'about us',
-    //   path:'/about',
-    //   icon: 'gallery',
-    //   type: 'link',
-    //   badgeType: 'light-secondary',
-    //   active: false,
-    // },
-
     {
       headTitle1: "Comision academic",
-      roles: ["Administrador", "Comisión Academica"],
-    },
-    {
-      title: "Comision academic",
       roles: ["Administrador", "Comisión Academica"],
     },
     {
@@ -227,7 +198,6 @@ export class NavService implements OnDestroy {
       active: false,
       roles: ["Administrador", "Comisión Academica"],
     },
-    // utils que no se usaran pero yo (byron) ocupo para testear más rápido. No borrar
     {
       headTitle1: "System Administration",
       roles: ["Administrador", "Comisión Academica"],
